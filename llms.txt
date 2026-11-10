@@ -6,7 +6,12 @@
 
 - [Catalog JSON (1 <= n <= 120)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/catalog/hadamard_maxdet_n1_to_120.json): Complete 120-order dataset with exact unrounded integers (`D_norm_exact`, `det_exact`), residue-class bound ratios, optimality status (`PROVEN_OPTIMAL` vs `OPEN`), and primary-source attributions.
 - [Catalog CSV (1 <= n <= 120)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/catalog/hadamard_maxdet_n1_to_120.csv): Flat CSV table of all 120 orders.
-- [Standalone Exact Verifier (`verify.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verify.py): Zero-dependency Python verifier using fraction-free Bareiss elimination (`python3 verify.py` for full catalog audit; `python3 verify.py --check FILE` to test any external `+/-`, JSON `[[1,-1,...]]`, CSV, or `0/1` candidate matrix).
+- [Master Verifier (`verify.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verify.py): Orchestrates full Bareiss determinant, residue-bound, GF(2) block-circulant (`*`), and SHA-256 verification (`python3 verify.py --check FILE` for external candidates).
+- [GF(2) Block-Circulant Verifier (`verifiers/circulant_structure.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verifiers/circulant_structure.py): Certifies sign-gauge circulant/back-circulant block cores (`*` engineering flag).
+- [Determinant & Bounds Engine (`verifiers/determinant_and_bounds.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verifiers/determinant_and_bounds.py): Exact integer Bareiss elimination and rational Hadamard/Barba/Ehlich-Wojtas/Ehlich(s) bounds.
+- [Candidate & Equivalence Auditor (`verifiers/candidate_audit.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verifiers/candidate_audit.py): Multi-format parser and Hadamard-equivalence Gram invariant fingerprinter.
+- [Maintainer Update CLI (`verifiers/admin_update_catalog.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verifiers/admin_update_catalog.py): Single-command record ingestion and `SHA256SUMS` refresh for co-maintainers.
+- [Contributor & Co-Maintainer Guide (`CONTRIBUTING.md`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/CONTRIBUTING.md): Submission rules, template reuse, and editorial co-stewardship workflow.
 - [Agent Primer (`AGENTS.md`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/AGENTS.md): Target map of the 50 open orders, exact bound formulas, floating-point pitfalls, and contribution protocol for autonomous AI agents.
 - [SHA-256 Integrity Manifest (`SHA256SUMS`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/SHA256SUMS): Cryptographic digests of all catalog tables, scripts, and witness matrices.
 

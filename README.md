@@ -270,8 +270,16 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 Standard IEEE-754 `float64` routines (`numpy.linalg.det` and `numpy.linalg.slogdet`) carry only 53 bits ($\approx 15.9$ decimal digits) of mantissa precision, whereas $D_{\text{norm}}(n)$ reaches 88 decimal digits by $n = 119$, and distinct constructions can agree to 6+ leading digits (for example at $n = 103$, where the 2026 improvement over Rokicki's 2005 circulant matrix is $+0.00004\%$ in the 7th significant digit). Every entry in this repository is therefore verified in **exact arbitrary-precision integer arithmetic**:
 
 1. **Domain & Dimension Check:** Verifies that $X$ has exact shape $n \times n$ and every entry belongs strictly to $\{-1, +1\}$.
-2. **Fraction-Free Bareiss Elimination:** Computes exact $\det X \in \mathbb{Z}$ via Bareiss integer elimination (`det_bareiss_int` in [`verify.py`](verify.py), zero external dependencies; optional independent cross-check via `sympy.Matrix.det(method='bareiss')` with `--sympy`).
+2. **Fraction-Free Bareiss Elimination:** Computes exact $\det X \in \mathbb{Z}$ via Bareiss integer elimination ([`verifiers/determinant_and_bounds.py`](verifiers/determinant_and_bounds.py), zero external dependencies; optional independent cross-check via `sympy.Matrix.det(method='bareiss')` with `--sympy`).
 3. **Exact Scaling & Upper-Bound Inequality:** Confirms $|\det X| \equiv 0 \pmod{2^{n-1}}$, extracts $D_{\text{norm}} = |\det X| / 2^{n-1}$, and checks the exact rational inequality $|\det X|^2 \le B_{\text{class}}(n)^2$ (using the residue-appropriate Hadamard, Barba, Ehlich–Wojtas, or $s$-block Ehlich bound with $s = 3, 5, 6, 7$).
+4. **Exact $\mathbb{F}_2$ Sign-Gauge Block-Circulant Audit (`*`):** Solves the exact binary linear system $s_r[i] \oplus s_c[j] \oplus c[k] = \mathbf{1}_{B_{i,j}=-1}$ over $\mathbb{F}_2$ ([`verifiers/circulant_structure.py`](verifiers/circulant_structure.py)) to certify 1-, 2-, and 4-block circulant/back-circulant cores even when archived matrices are normalized by row/column sign flips.
+
+### Modular `verifiers/` Directory (Template Reuse & Co-Maintainer Toolkit)
+All verification and table-maintenance code lives openly in [`verifiers/`](verifiers/) (full workflow in [`CONTRIBUTING.md`](CONTRIBUTING.md)):
+- [`verifiers/determinant_and_bounds.py`](verifiers/determinant_and_bounds.py) — standalone Bareiss determinant & exact rational residue-bound engine.
+- [`verifiers/circulant_structure.py`](verifiers/circulant_structure.py) — standalone $\mathbb{F}_2$ block-circulant classifier (`python3 verifiers/circulant_structure.py --inspect matrices/literature_witnesses/n051.txt`).
+- [`verifiers/candidate_audit.py`](verifiers/candidate_audit.py) — multi-format external candidate parser & Hadamard-equivalence Gram fingerprinter.
+- [`verifiers/admin_update_catalog.py`](verifiers/admin_update_catalog.py) — co-maintainer CLI for ingesting verified new records into JSON/CSV/`matrices/` and refreshing `SHA256SUMS`.
 
 ### Checking an External Candidate Matrix in One Command
 Researchers and automated search agents can validate any candidate matrix against the exact residue-class bound and the live `1 <= n <= 120` catalog without installing third-party packages:
@@ -314,9 +322,9 @@ python3 verify.py --check path/to/candidate_matrix.json --sympy # Dual Bareiss +
 ### Expository Overviews & Constructive Hadamard Libraries
 - **Mathematical Surveys:** [Wikipedia — *Hadamard's maximal determinant problem*](https://en.wikipedia.org/wiki/Hadamard%27s_maximal_determinant_problem) · [Wolfram MathWorld — *Hadamard's Maximum Determinant Problem*](https://mathworld.wolfram.com/HadamardsMaximumDeterminantProblem.html) · [R. P. Brent's Maximal Determinant Papers](https://maths-people.anu.edu.au/~brent/pub/pubsall.html).
 - **Constructive Matrix Libraries (Order $4k$ Seeds):** [N. J. A. Sloane's Library of Hadamard Matrices](http://neilsloane.com/hadamard/) · [SageMath Combinatorial Designs (`hadamard_matrix`)](https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/matrices/hadamard_matrix.html).
-- **Agent & LLM Discovery Manifests:** [`AGENTS.md`](AGENTS.md) (autonomous agent primer, target filter & verification rules) · [`llms.txt`](llms.txt) ([`llmstxt.org`](https://llmstxt.org/) machine-readable index) · [`CITATION.cff`](CITATION.cff).
+- **Agent, Maintainer & LLM Guides:** [`AGENTS.md`](AGENTS.md) (autonomous agent primer & verification rules) · [`CONTRIBUTING.md`](CONTRIBUTING.md) (PR, template-reuse & co-maintainer guide) · [`llms.txt`](llms.txt) ([`llmstxt.org`](https://llmstxt.org/) index) · [`CITATION.cff`](CITATION.cff).
 
-Corrections, missing historical references, or new verified matrices (`python3 verify.py --check your_matrix.txt`) are welcome via GitHub Issues or Pull Requests.
+Corrections, missing historical references, verified new matrices (`python3 verify.py --check your_matrix.txt`), or inquiries regarding editorial co-stewardship (see [`CONTRIBUTING.md`](CONTRIBUTING.md)) are welcome via GitHub Issues or Pull Requests.
 
 <details>
 <summary><strong>Full Bibliographic Key ([Syl1867] – [BG2026])</strong></summary>
