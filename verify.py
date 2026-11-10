@@ -177,6 +177,7 @@ def run_verification(
 ) -> int:
     t0 = time.perf_counter()
     we_path = repo_root / "catalog" / "new_records.json"
+    tied_path = repo_root / "catalog" / "tied_constructions.json"
     cat_path = repo_root / "catalog" / "hadamard_maxdet_n1_to_120.json"
     csv_path = repo_root / "catalog" / "hadamard_maxdet_n1_to_120.csv"
     sums_path = repo_root / "SHA256SUMS"
@@ -236,6 +237,25 @@ def run_verification(
                 f"| +{rec['gain_percent']:.4f}% vs {rec['previous_holder_short']:<28s} "
                 f"| R={float(ratio):.6f} | {dt:5.1f} ms"
             )
+
+    if tied_path.exists():
+        tied_data = json.loads(tied_path.read_text(encoding="utf-8"))
+        tied_list = tied_data.get("tied_witnesses", [])
+        print(f"=== Verifying {len(tied_list)} Alternative Record-Tying Witnesses ===")
+        for tw in tied_list:
+            n = int(tw["n"])
+            claimed_d = int(tw["D_norm"])
+            cat_d = int(entries[n - 1]["D_norm_exact"])
+            if claimed_d != cat_d:
+                print(f"FAIL: Tied witness n={n} D_norm ({claimed_d}) != catalog ({cat_d})!", file=sys.stderr)
+                return 1
+            verify_matrix_rows_against_d_norm(n, tw["matrix_rows"], claimed_d, check_sympy=use_sympy)
+            tfile = repo_root / tw["matrix_file"]
+            disk_rows = [ln.strip() for ln in tfile.read_text(encoding="utf-8").splitlines() if ln.strip()]
+            if disk_rows != tw["matrix_rows"]:
+                print(f"FAIL: Disk tied witness {tfile} differs from JSON certificate!", file=sys.stderr)
+                return 1
+        print(f"  [PASS] {len(tied_list)}/{len(tied_list)} alternative record-tying witnesses verified.")
 
     if verify_all_open:
         open_entries = [e for e in entries if e["status"] == "OPEN"]

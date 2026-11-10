@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_utc": "2026-11-10T22:14:44Z",
+  "generated_utc": "2026-11-10T22:24:04Z",
   "edition": "v1.0-literature-baseline",
   "scope": "Unified Hadamard Maximal Determinant Catalog for orders 1 <= n <= 120",
   "normalization": "D_norm = |det(X)| / 2^(n-1) for X in {-1, +1}^(n x n) (OEIS A003432); det_exact = |det(X)| (OEIS A003433)",

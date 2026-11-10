@@ -17,6 +17,7 @@ python3 verify.py --corrupt               # Adversarial 1-entry mutation self-te
 ```
 
 - **Machine-Readable Tables (full unrounded integers):** [`catalog/hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv) · [`catalog/hadamard_maxdet_n1_to_120.json`](catalog/hadamard_maxdet_n1_to_120.json)
+- **For AI Agents & Crawlers:** [`AGENTS.md`](AGENTS.md) · [`llms.txt`](llms.txt)
 - **Companion Open-Science Repository:** <https://github.com/mizopl/we-star>
 
 ---
@@ -286,6 +287,11 @@ python3 verify.py --check path/to/candidate_matrix.json --sympy # Dual Bareiss +
 - **[EinsteinArena](https://einsteinarena.com/) (*Hadamard Maximal Determinant*):** Hosts a live benchmark specifically on **order $n = 51$**, where the current record is $D_{\text{norm}}(51) = 17{,}776{,}121{,}037{,}665{,}193{,}653{,}653{,}203{,}125$ ($R = 0.877569$, [`matrices/literature_witnesses/n051.txt`](matrices/literature_witnesses/n051.txt)). Candidate $51 \times 51$ JSON matrices can be pre-verified locally with `python3 verify.py --check candidate_51.json`.
 - **[`elder-plinius/V3R1T4S`](https://github.com/elder-plinius/V3R1T4S) (`hadamard-maxdet-records`):** Open verification benchmark tracking strict determinant improvements and maximality certificates across all 50 open orders $n \not\equiv 0 \pmod 4$.
 - **[`teorth/optimizationproblems`](https://github.com/teorth/optimizationproblems):** Terence Tao's curated catalog of open extremal and combinatorial optimization benchmarks.
+
+### Expository Overviews & Constructive Hadamard Libraries
+- **Mathematical Surveys:** [Wikipedia — *Hadamard's maximal determinant problem*](https://en.wikipedia.org/wiki/Hadamard%27s_maximal_determinant_problem) · [Wolfram MathWorld — *Hadamard's Maximum Determinant Problem*](https://mathworld.wolfram.com/HadamardsMaximumDeterminantProblem.html) · [R. P. Brent's Maximal Determinant Papers](https://maths-people.anu.edu.au/~brent/pub/pubsall.html).
+- **Constructive Matrix Libraries (Order $4k$ Seeds):** [N. J. A. Sloane's Library of Hadamard Matrices](http://neilsloane.com/hadamard/) · [SageMath Combinatorial Designs (`hadamard_matrix`)](https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/matrices/hadamard_matrix.html).
+- **Agent & LLM Discovery Manifests:** [`AGENTS.md`](AGENTS.md) (autonomous agent primer, target filter & verification rules) · [`llms.txt`](llms.txt) ([`llmstxt.org`](https://llmstxt.org/) machine-readable index) · [`CITATION.cff`](CITATION.cff).
 
 Corrections, missing historical references, or new verified matrices (`python3 verify.py --check your_matrix.txt`) are welcome via GitHub Issues or Pull Requests.
 

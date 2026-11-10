@@ -1,0 +1,21 @@
+# Hadamard Maximal Determinant Catalog (1 <= n <= 120)
+
+> Unified, offline-verifiable reference catalog and exact-integer Bareiss verification suite for maximal determinants of n x n {+1, -1} sign matrices across all orders 1 <= n <= 120 (OEIS A003432 / A003433), consolidating W. P. Orrick's archived MaxDet database (2002-2012), T. Rokicki (2005), H. Tamura (2005-2011), R. P. Brent (2021), and Butbaia, Gukov et al. (arXiv:2608.22518, Oct 2026), with explicit witness matrices for 49/50 open orders.
+
+## Machine-Readable Data & Verifier
+
+- [Catalog JSON (1 <= n <= 120)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/catalog/hadamard_maxdet_n1_to_120.json): Complete 120-order dataset with exact unrounded integers (`D_norm_exact`, `det_exact`), residue-class bound ratios, optimality status (`PROVEN_OPTIMAL` vs `OPEN`), and primary-source attributions.
+- [Catalog CSV (1 <= n <= 120)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/catalog/hadamard_maxdet_n1_to_120.csv): Flat CSV table of all 120 orders.
+- [Standalone Exact Verifier (`verify.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verify.py): Zero-dependency Python verifier using fraction-free Bareiss elimination (`python3 verify.py` for full catalog audit; `python3 verify.py --check FILE` to test any external `+/-`, JSON `[[1,-1,...]]`, CSV, or `0/1` candidate matrix).
+- [Agent Primer (`AGENTS.md`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/AGENTS.md): Target map of the 50 open orders, exact bound formulas, floating-point pitfalls, and contribution protocol for autonomous AI agents.
+- [SHA-256 Integrity Manifest (`SHA256SUMS`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/SHA256SUMS): Cryptographic digests of all catalog tables, scripts, and witness matrices.
+
+## Primary External References & Benchmarks
+
+- [OEIS A003432](https://oeis.org/A003432): Maximal determinant of (n-1) x (n-1) {0, 1} matrices, equal to D_norm(n) = |det X| / 2^(n-1).
+- [OEIS A003433](https://oeis.org/A003433): Maximal determinant |det X| of n x n {+1, -1} matrices.
+- [W. P. Orrick MaxDet Archive (Archive-It)](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/): Historical maximal determinant tables and bounds (2002-2012).
+- [W. P. Orrick MaxDet Summary Table (Wayback)](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml): Archived fullPage.shtml table for orders n <= 119.
+- [Math-AI-Caltech/hadamard-maxdet](https://github.com/Math-AI-Caltech/hadamard-maxdet): Two-circulant RL constructions for orders 51, 103, 107, 111, 115, 119 (arXiv:2608.22518).
+- [EinsteinArena](https://einsteinarena.com/): Live agentic benchmark featuring Hadamard Maximal Determinant (order 51).
+- [elder-plinius/V3R1T4S](https://github.com/elder-plinius/V3R1T4S): Open verification benchmark (`hadamard-maxdet-records`).

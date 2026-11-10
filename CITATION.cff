@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this catalog or exact verification suite in your research, please cite it using the metadata below."
+title: "Hadamard Maximal Determinant Catalog (1 <= n <= 120)"
+version: "1.0.0"
+date-released: "2026-11-10"
+license: "MIT"
+repository-code: "https://github.com/mizopl/hadamard-maxdet"
+url: "https://github.com/mizopl/hadamard-maxdet"
+authors:
+  - name: "we* (@mizopl)"
+    website: "https://github.com/mizopl/we-star"
+keywords:
+  - "Hadamard maximal determinant problem"
+  - "D-optimal designs"
+  - "sign matrices"
+  - "OEIS A003432"
+  - "OEIS A003433"
+  - "exact integer verification"
