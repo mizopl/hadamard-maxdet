@@ -195,6 +195,9 @@ def collect_tracked_files(repo_root: Path) -> List[Path]:
     ver_dir = repo_root / "verifiers"
     if ver_dir.is_dir():
         tracked.extend(sorted(ver_dir.glob("*.py")))
+    assets_dir = repo_root / "assets"
+    if assets_dir.is_dir():
+        tracked.extend(sorted(p for p in assets_dir.iterdir() if p.is_file() and not p.name.startswith(".")))
     cat_dir = repo_root / "catalog"
     for cname in (
         "hadamard_maxdet_n1_to_120.json",
