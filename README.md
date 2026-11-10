@@ -2,6 +2,16 @@
 
 Unified, offline-verifiable reference catalog of maximal determinants of $n \times n$ sign matrices $X \in \{-1, +1\}^{n \times n}$ across all orders $1 \le n \le 120$, consolidating historical constructions and optimality proofs from William P. Orrick's archived [`MaxDet` database](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/) (2002–2012), Tomas Rokicki's circulant-pair tables (2005), Hiroki Tamura's constructions (2005–2011), Richard P. Brent's optimality proof for $n = 22$ ([OEIS A003432](https://oeis.org/A003432), 2021), and the two-circulant reinforcement-learning records of Butbaia, Gukov et al. ([arXiv:2608.22518](https://arxiv.org/abs/2608.22518), [`Math-AI-Caltech/hadamard-maxdet`](https://github.com/Math-AI-Caltech/hadamard-maxdet), Oct 2026).
 
+<table>
+<tr>
+<td>
+
+<b>Historical Origin &amp; Practical Significance.</b> Posed by <a href="https://en.wikipedia.org/wiki/Hadamard%27s_maximal_determinant_problem">Jacques Hadamard (1893)</a> following <a href="https://en.wikipedia.org/wiki/Sylvester%27s_construction">J. J. Sylvester's (1867)</a> dyadic constructions, the maximal determinant problem asks for the largest possible |det <i>X</i>| among <i>n</i> &times; <i>n</i> sign matrices <i>X</i> &isin; {&minus;1, +1}<sup><i>n</i>&times;<i>n</i></sup>. Hadamard's orthogonal ceiling |det <i>X</i>| &le; <i>n</i><sup><i>n</i>/2</sup> is attainable only for <i>n</i> = 1, 2, and multiples of 4 (where existence for every <i>n</i> &equiv; 0 mod 4 remains the open Hadamard conjecture, currently settled up to <i>n</i> &lt; 668); on all remaining orders <i>n</i> &equiv; 1, 2, 3 (mod 4), exact column orthogonality is arithmetically impossible and sharper bounds proved by Barba (1933), Ehlich (1964), and Wojtas (1964) govern the extremal geometry. In applied statistics and metrology, maximal-determinant &plusmn;1 matrices are <b><i>D</i>-optimal weighing and two-level factorial designs</b> (Hotelling 1944; Kiefer): maximizing |det <i>X</i>| minimizes the generalized covariance det(<i>X</i><sup>T</sup><i>X</i>)<sup>&minus;1</sup> = |det <i>X</i>|<sup>&minus;2</sup> and the joint confidence-ellipsoid volume when estimating <i>n</i> unknown parameters under bounded &plusmn;1 probes. Through the Williamson {0, 1} bijection, the same matrices maximize multiplex signal-to-noise gain (Fellgett's advantage) in <b>Hadamard-transform spectroscopy and coded-aperture imaging</b> when detector geometry fixes <i>n</i> &not;&equiv; 0 (mod 4), supply low-sidelobe sequences for <b>radar and spread-spectrum communications</b>, and calibrate <b>complete-pivoting growth bounds</b> in numerical linear algebra.
+
+</td>
+</tr>
+</table>
+
 ### Normalization & Quick Verification
 
 Every $n \times n$ sign matrix $X \in \{-1, +1\}^{n \times n}$ has $|\det X|$ divisible by $2^{n-1}$. Following [OEIS A003432](https://oeis.org/A003432) and Orrick's catalog, we report the exact normalized integer determinant
