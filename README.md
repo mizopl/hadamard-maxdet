@@ -2,6 +2,9 @@
 
 Unified, offline-verifiable reference catalog of maximal determinants of $n \times n$ sign matrices $X \in \{-1, +1\}^{n \times n}$ across all orders $1 \le n \le 120$, consolidating historical constructions and optimality proofs from William P. Orrick's archived [`MaxDet` database](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/) (2002–2012), Tomas Rokicki's circulant-pair tables (2005), Hiroki Tamura's constructions (2005–2011), Richard P. Brent's optimality proof for $n = 22$ ([OEIS A003432](https://oeis.org/A003432), 2021), and the two-circulant reinforcement-learning records of Butbaia, Gukov et al. ([arXiv:2608.22518](https://arxiv.org/abs/2608.22518), [`Math-AI-Caltech/hadamard-maxdet`](https://github.com/Math-AI-Caltech/hadamard-maxdet), Oct 2026).
 
+<details>
+<summary><strong>Historical Background, Practical Significance &amp; Plain-Language Engineering Guide (<code>*</code> Legend)</strong></summary>
+<br>
 <table>
 <tr>
 <td>
@@ -18,6 +21,7 @@ Unified, offline-verifiable reference catalog of maximal determinants of $n \tim
 </td>
 </tr>
 </table>
+</details>
 
 ### Normalization & Quick Verification
 
