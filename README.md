@@ -1,18 +1,19 @@
 # Hadamard Maximal Determinant Catalog (1 <= n <= 120)
 
-Unified, offline-verifiable reference catalog of maximal determinants of $n \times n$ sign matrices $X \in \{-1, +1\}^{n \times n}$ across all orders $1 \le n \le 120$, consolidating historical constructions and optimality results from William P. Orrick's archived `MaxDet` database (`indiana.edu/~maxdet`, 2002–2012), Tomas Rokicki's circulant-pair tables (2005), Hiroki Tamura's constructions (2005–2011), Richard P. Brent's optimality proof for $n = 22$ (2021), and the two-circulant reinforcement-learning records of Butbaia, Gukov et al. (`arXiv:2608.22518v3`, Oct 2026).
+Unified, offline-verifiable reference catalog of maximal determinants of $n \times n$ sign matrices $X \in \{-1, +1\}^{n \times n}$ across all orders $1 \le n \le 120$, consolidating historical constructions and optimality proofs from William P. Orrick's archived [`MaxDet` database](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/) (2002–2012), Tomas Rokicki's circulant-pair tables (2005), Hiroki Tamura's constructions (2005–2011), Richard P. Brent's optimality proof for $n = 22$ ([OEIS A003432](https://oeis.org/A003432), 2021), and the two-circulant reinforcement-learning records of Butbaia, Gukov et al. ([arXiv:2608.22518](https://arxiv.org/abs/2608.22518), [`Math-AI-Caltech/hadamard-maxdet`](https://github.com/Math-AI-Caltech/hadamard-maxdet), Oct 2026).
 
 ### Normalization & Quick Verification
 
-Every $n \times n$ sign matrix $X \in \{-1, +1\}^{n \times n}$ has $|\det X|$ divisible by $2^{n-1}$. Following `OEIS A003432` and Orrick's catalog, we report the exact normalized integer determinant
+Every $n \times n$ sign matrix $X \in \{-1, +1\}^{n \times n}$ has $|\det X|$ divisible by $2^{n-1}$. Following [OEIS A003432](https://oeis.org/A003432) and Orrick's catalog, we report the exact normalized integer determinant
 
 $$D_{\text{norm}}(n) = \frac{|\det X|}{2^{n-1}} \in \mathbb{Z}_{>0}, \qquad R(n) = \frac{|\det X|}{B_{\text{class}}(n)} \le 1,$$
 
-which equals the maximal determinant of an $(n-1) \times (n-1)$ binary $\{0, 1\}$ matrix (`OEIS A003433` tracks raw $|\det X| = 2^{n-1} D_{\text{norm}}(n)$). Explicit `{-1, +1}` witness matrices are included in [`matrices/literature_witnesses/`](matrices/literature_witnesses/) for **49 / 50** open orders (`n = 89` had no explicit matrix archived in `MaxDet`).
+which equals the maximal determinant of an $(n-1) \times (n-1)$ binary $\{0, 1\}$ matrix ([OEIS A003433](https://oeis.org/A003433) tracks raw $|\det X| = 2^{n-1} D_{\text{norm}}(n)$). Explicit `{-1, +1}` witness matrices are included in [`matrices/literature_witnesses/`](matrices/literature_witnesses/) for **49 / 50** open orders (`n = 89` had no explicit matrix archived in `MaxDet`).
 
 ```bash
-python3 verify.py            # Verifies all 49 explicit open-order witnesses, 120 bounds, CSV/JSON parity & SHA256SUMS
-python3 verify.py --corrupt  # Adversarial 1-entry mutation self-test (must print FAIL and exit 1)
+python3 verify.py                         # Verifies all 49 open witnesses, 120 bounds, CSV/JSON parity & SHA256SUMS
+python3 verify.py --check my_matrix.txt   # Evaluates any external +/-1 or 0/1 candidate matrix against catalog records
+python3 verify.py --corrupt               # Adversarial 1-entry mutation self-test (must print FAIL and exit 1)
 ```
 
 - **Machine-Readable Tables (full unrounded integers):** [`catalog/hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv) · [`catalog/hadamard_maxdet_n1_to_120.json`](catalog/hadamard_maxdet_n1_to_120.json)
@@ -33,7 +34,7 @@ python3 verify.py --corrupt  # Adversarial 1-entry mutation self-test (must prin
 
 ## 2. Best Known Lower Bounds on All 50 Open Orders (23 <= n <= 119)
 
-To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the 50 open orders ($R(n) < 1$, no published optimality proof) are split into their three residue classes below (`49` rows verified directly from `{-1, +1}` matrices by `python3 verify.py`; exact unrounded integers in [`hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv)):
+To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the 50 open orders ($R(n) < 1$, no published optimality proof) are split into their three residue classes below (`49` rows verified directly from `{-1, +1}` matrices by [`verify.py`](verify.py); exact unrounded integers in [`hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv)):
 
 ### 2.1 Orders n ≡ 1 (mod 4) — Barba Regime (19 Open Orders)
 
@@ -239,9 +240,54 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 
 ---
 
-## 3. Attribution, Provenance & References
+## 3. Exact Verification & Testing Your Own Matrices (`verify.py`)
 
-This catalog stands on over a century of combinatorial design theory and builds directly on the archival curation of **William P. Orrick** and **Bruce Solomon** (`MaxDet`, Indiana University, 2002–2012), the circulant-pair searches of **Tomas Rokicki** (2005) and **Hiroki Tamura** (2005–2011), and the two-circulant RL study of **Giorgi Butbaia, Sergei Gukov et al.** (`Math-AI-Caltech/hadamard-maxdet`, `arXiv:2608.22518v3`, 2026). Corrections, missing historical references, or new verified constructions are welcome via issues or pull requests.
+### Why Floating-Point Determinants Cannot Certify Records
+Standard IEEE-754 `float64` routines (`numpy.linalg.det` and `numpy.linalg.slogdet`) carry only 53 bits ($\approx 15.9$ decimal digits) of mantissa precision, whereas $D_{\text{norm}}(n)$ reaches 88 decimal digits by $n = 119$, and distinct constructions can agree to 6+ leading digits (for example at $n = 103$, where the 2026 improvement over Rokicki's 2005 circulant matrix is $+0.00004\%$ in the 7th significant digit). Every entry in this repository is therefore verified in **exact arbitrary-precision integer arithmetic**:
+
+1. **Domain & Dimension Check:** Verifies that $X$ has exact shape $n \times n$ and every entry belongs strictly to $\{-1, +1\}$.
+2. **Fraction-Free Bareiss Elimination:** Computes exact $\det X \in \mathbb{Z}$ via Bareiss integer elimination (`det_bareiss_int` in [`verify.py`](verify.py), zero external dependencies; optional independent cross-check via `sympy.Matrix.det(method='bareiss')` with `--sympy`).
+3. **Exact Scaling & Upper-Bound Inequality:** Confirms $|\det X| \equiv 0 \pmod{2^{n-1}}$, extracts $D_{\text{norm}} = |\det X| / 2^{n-1}$, and checks the exact rational inequality $|\det X|^2 \le B_{\text{class}}(n)^2$ (using the residue-appropriate Hadamard, Barba, Ehlich–Wojtas, or $s$-block Ehlich bound with $s = 3, 5, 6, 7$).
+
+### Checking an External Candidate Matrix in One Command
+Researchers and automated search agents can validate any candidate matrix against the exact residue-class bound and the live `1 <= n <= 120` catalog without installing third-party packages:
+
+```bash
+python3 verify.py --check path/to/candidate_matrix.txt          # Pure-Python Bareiss (~1-120 ms)
+python3 verify.py --check path/to/candidate_matrix.json --sympy # Dual Bareiss + SymPy check
+```
+
+`--check` automatically accepts four common community formats:
+- **Compact `+/-` sign grids** (`n` lines of `+` and `-`, used in `matrices/*.txt` and Orrick's `MaxDet` archive),
+- **JSON 2D arrays** (`[[1, -1, ...], ...]` or `{"matrix": [[...]]}`, matching **EinsteinArena** payloads),
+- **CSV or whitespace-separated `{-1, +1}` integer matrices** (`numpy.savetxt(..., fmt='%d')`),
+- **Binary `{0, 1}` matrices of order $m = n - 1$** ([OEIS A003432](https://oeis.org/A003432) convention, lifted constructively via $X = \bigl[\begin{smallmatrix} 1 & \mathbf{1}^T \\ \mathbf{1} & J - 2B \end{smallmatrix}\bigr]$ with $D_{\text{norm}}(m+1) = |\det B|$).
+
+<details>
+<summary><strong>CSV & JSON Column Guide (<code>status</code> vs. <code>attains_residue_bound</code>)</strong></summary>
+
+[`catalog/hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv) and [`catalog/hadamard_maxdet_n1_to_120.json`](catalog/hadamard_maxdet_n1_to_120.json) distinguish between **optimality** (`status`) and **bound tightness** (`attains_residue_bound`):
+
+- **`status = PROVEN_OPTIMAL` + `attains_residue_bound = True` (61 orders):** A sign matrix achieves $100\%$ of its residue-class upper bound ($R = 1$), immediately certifying optimality (all 30 Hadamard orders $n \equiv 0 \pmod 4$, $n \in \{1, 2, 3\}$, 6 Barba orders $5, 13, 25, 41, 61, 113$, and 22 Ehlich–Wojtas orders).
+- **`status = PROVEN_OPTIMAL` + `attains_residue_bound = False` (9 orders: `7, 9, 11, 15, 17, 19, 21, 22, 37`):** The closed-form residue-class formula is arithmetically unattainable over $\{-1, +1\}$ ($R < 1$), yet an exhaustive computer-assisted or algebraic proof establishes that no larger determinant exists for that $n$ (e.g., [Brent et al. 2011](https://arxiv.org/abs/1112.4160) for $n = 19, 37$; [Brent 2021](https://oeis.org/A003432) for $n = 22$).
+- **`status = OPEN` + `attains_residue_bound = False` (50 orders, `23 <= n <= 119`):** No optimality proof is published and $R < 1$; `D_norm_exact` records the best verified constructive lower bound.
+</details>
+
+---
+
+## 4. Primary Sources, Related Benchmarks & Attribution
+
+### Archival Databases & Integer Sequences
+- **W. P. Orrick & B. Solomon — `MaxDet` (`indiana.edu/~maxdet`, 2002–2012):** Preserved via the [Indiana University Archive-It mirror](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/), the [Wayback full summary table (`fullPage.shtml`)](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml), and the [theoretical upper-bounds guide (`bounds.html`)](https://web.archive.org/web/20131002153511/http://www.indiana.edu/~maxdet/bounds.html).
+- **OEIS Sequences:** [OEIS A003432](https://oeis.org/A003432) (normalized integer $D_{\text{norm}}(n) = |\det X| / 2^{n-1}$, equal to the maximal $(n-1)\times(n-1)$ binary $\{0,1\}$ determinant) · [OEIS A003433](https://oeis.org/A003433) (raw maximal $\{-1,+1\}$ determinant $|\det X|$).
+- **Two-Circulant RL Dataset (`n ≡ 3 mod 4`):** G. Butbaia, S. Gukov et al., [`Math-AI-Caltech/hadamard-maxdet`](https://github.com/Math-AI-Caltech/hadamard-maxdet) ([arXiv:2608.22518](https://arxiv.org/abs/2608.22518) · [Zenodo 22024187](https://zenodo.org/records/22024187), Oct 2026) covering orders `51, 103, 107, 111, 115, 119`.
+
+### Active Open-Problem Benchmarks & Agentic Challenges
+- **[EinsteinArena](https://einsteinarena.com/) (*Hadamard Maximal Determinant*):** Hosts a live benchmark specifically on **order $n = 51$**, where the current record is $D_{\text{norm}}(51) = 17{,}776{,}121{,}037{,}665{,}193{,}653{,}653{,}203{,}125$ ($R = 0.877569$, [`matrices/literature_witnesses/n051.txt`](matrices/literature_witnesses/n051.txt)). Candidate $51 \times 51$ JSON matrices can be pre-verified locally with `python3 verify.py --check candidate_51.json`.
+- **[`elder-plinius/V3R1T4S`](https://github.com/elder-plinius/V3R1T4S) (`hadamard-maxdet-records`):** Open verification benchmark tracking strict determinant improvements and maximality certificates across all 50 open orders $n \not\equiv 0 \pmod 4$.
+- **[`teorth/optimizationproblems`](https://github.com/teorth/optimizationproblems):** Terence Tao's curated catalog of open extremal and combinatorial optimization benchmarks.
+
+Corrections, missing historical references, or new verified matrices (`python3 verify.py --check your_matrix.txt`) are welcome via GitHub Issues or Pull Requests.
 
 <details>
 <summary><strong>Full Bibliographic Key ([Syl1867] – [BG2026])</strong></summary>
@@ -271,19 +317,19 @@ This catalog stands on over a century of combinatorial design theory and builds 
 - **[KKS1989]** C. Koukouvinos, S. Kounias, and J. Seberry (1989), Further Hadamard matrices with maximal excess and new D-optimal designs for n = 2 mod 4, Utilitas Math. 36, 135-150.
 - **[FS2001]** R. J. Fletcher and J. Seberry (2001), New D-optimal designs of order 110, Australas. J. Combin. 23, 49-52.
 - **[FKS2002]** R. J. Fletcher, C. Koukouvinos, and J. Seberry (2002), New skew-Hadamard matrices of order 4*59 and D-optimal designs of order 2*59, Discrete Math. 286 (2004), 251-253.
-- **[Sol2002]** B. Solomon (2002), Large-determinant sign matrices of orders 29 and 33, reported in W. P. Orrick's MaxDet catalog.
-- **[OSDS2003]** W. P. Orrick, B. Solomon, R. Dowdeswell, and W. D. Smith (2003), New lower bounds for the maximal determinant problem, arXiv:math/0304410.
-- **[OS2007]** W. P. Orrick and B. Solomon (2003; publ. 2007), Large-determinant sign matrices of order 4k+1, Discrete Math. 307, 226-236 (arXiv:math/0311292).
-- **[DNST2004]** A. Dowdeswell, M. G. Neubauer, B. Solomon, and K. Tumer (2004), Lower bound for order 23 in W. P. Orrick's MaxDet catalog.
-- **[Orr2005]** W. P. Orrick (2005), Switching operations for Hadamard matrices and D-optimal designs of orders 34, 70, 106, SIAM J. Discrete Math. 22 (2008), 31-50.
-- **[Rok2005]** T. Rokicki (Apr 2005), New determinant records from circulant pairs (orders 51-119), archived in W. P. Orrick's MaxDet catalog.
-- **[Mey2005]** J.-C. Meyrignac and B. Felgenhauer (Apr 2005), Order 57 sign matrix record, archived in W. P. Orrick's MaxDet catalog.
-- **[Tam2005]** H. Tamura (Aug 2005), Maximal determinant records for orders 27, 31, and 59, archived in W. P. Orrick's MaxDet catalog.
-- **[BOOZ2011]** R. P. Brent, W. P. Orrick, J.-a. H. Osborn, and P. Zimmermann (2009-2011), Maximal determinants and saturated D-optimal designs of orders 19 and 37 (and order 45 construction), arXiv:1112.4160.
-- **[Tam2011]** H. Tamura (Jan 2011), Maximal determinant records for orders 35, 39, 43, and 63, archived in W. P. Orrick's MaxDet catalog.
-- **[DK2015]** D. Z. Djokovic and I. S. Kotsireas (2015), D-optimal matrices of orders 118, 138, 150, 154 and 174, Algebraic Design Theory and Hadamard Matrices, Springer, 61-72.
-- **[Bre2021]** R. P. Brent (2021), Optimality confirmation for binary order 21 (sign order 22, a(21) = 195312500), OEIS A003432.
-- **[BG2026]** G. Butbaia, J. Tan, P. Vipulanandan, X. Huang, T. Saunders-A'Court, L. Fagan, D. Passaro, M. Tarquini, and S. Gukov (Oct 2026), Reinforcement learning for the Hadamard maximal determinant problem, arXiv:2608.22518v3 (Math-AI-Caltech/hadamard-maxdet).
+- **[Sol2002]** B. Solomon (2002), Large-determinant sign matrices of orders 29 and 33, reported in W. P. Orrick's [MaxDet catalog](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/).
+- **[OSDS2003]** W. P. Orrick, B. Solomon, R. Dowdeswell, and W. D. Smith (2003), New lower bounds for the maximal determinant problem, [arXiv:math/0304410](https://arxiv.org/abs/math/0304410).
+- **[OS2007]** W. P. Orrick and B. Solomon (2003; publ. 2007), Large-determinant sign matrices of order 4k+1, Discrete Math. 307, 226-236 ([arXiv:math/0311292](https://arxiv.org/abs/math/0311292)).
+- **[DNST2004]** A. Dowdeswell, M. G. Neubauer, B. Solomon, and K. Tumer (2004), Lower bound for order 23 in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
+- **[Orr2005]** W. P. Orrick (2005), Switching operations for Hadamard matrices and D-optimal designs of orders 34, 70, 106, SIAM J. Discrete Math. 22 (2008), 31-50 ([arXiv:math/0507515](https://arxiv.org/abs/math/0507515)).
+- **[Rok2005]** T. Rokicki (Apr 2005), New determinant records from circulant pairs (orders 51-119), archived in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
+- **[Mey2005]** J.-C. Meyrignac and B. Felgenhauer (Apr 2005), Order 57 sign matrix record, archived in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
+- **[Tam2005]** H. Tamura (Aug 2005), Maximal determinant records for orders 27, 31, and 59, archived in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
+- **[BOOZ2011]** R. P. Brent, W. P. Orrick, J.-a. H. Osborn, and P. Zimmermann (2009-2011), Maximal determinants and saturated D-optimal designs of orders 19 and 37 (and order 45 construction), [arXiv:1112.4160](https://arxiv.org/abs/1112.4160).
+- **[Tam2011]** H. Tamura (Jan 2011), Maximal determinant records for orders 35, 39, 43, and 63, archived in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
+- **[DK2015]** D. Z. Djokovic and I. S. Kotsireas (2015), D-optimal matrices of orders 118, 138, 150, 154 and 174, Algebraic Design Theory and Hadamard Matrices, Springer, 61-72 ([arXiv:1501.07640](https://arxiv.org/abs/1501.07640)).
+- **[Bre2021]** R. P. Brent (2021), Optimality confirmation for binary order 21 (sign order 22, a(21) = 195312500), [OEIS A003432](https://oeis.org/A003432).
+- **[BG2026]** G. Butbaia, J. Tan, P. Vipulanandan, X. Huang, T. Saunders-A'Court, L. Fagan, D. Passaro, M. Tarquini, and S. Gukov (Oct 2026), Reinforcement learning for the Hadamard maximal determinant problem, [arXiv:2608.22518](https://arxiv.org/abs/2608.22518) · [Zenodo 22024187](https://zenodo.org/records/22024187) · [Math-AI-Caltech/hadamard-maxdet](https://github.com/Math-AI-Caltech/hadamard-maxdet).
 </details>
 
 ---
