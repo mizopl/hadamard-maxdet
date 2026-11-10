@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_utc": "2026-11-10T22:30:37Z",
+  "generated_utc": "2026-11-10T22:44:29Z",
   "edition": "v1.0-literature-baseline",
   "scope": "Unified Hadamard Maximal Determinant Catalog for orders 1 <= n <= 120",
   "normalization": "D_norm = |det(X)| / 2^(n-1) for X in {-1, +1}^(n x n) (OEIS A003432); det_exact = |det(X)| (OEIS A003433)",
@@ -70,7 +70,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": true,
+      "block_circulant_witness": false
     },
     {
       "n": 2,
@@ -90,7 +92,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": true,
+      "block_circulant_witness": false
     },
     {
       "n": 3,
@@ -110,7 +114,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 4,
@@ -130,7 +136,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": true,
+      "block_circulant_witness": false
     },
     {
       "n": 5,
@@ -150,7 +158,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 6,
@@ -170,7 +180,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 7,
@@ -190,7 +202,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 8,
@@ -210,7 +224,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": true,
+      "block_circulant_witness": false
     },
     {
       "n": 9,
@@ -230,7 +246,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 10,
@@ -250,7 +268,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 11,
@@ -270,7 +290,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 12,
@@ -290,7 +312,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 13,
@@ -310,7 +334,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 14,
@@ -330,7 +356,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 15,
@@ -350,7 +378,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 16,
@@ -370,7 +400,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": true,
+      "block_circulant_witness": false
     },
     {
       "n": 17,
@@ -390,7 +422,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 18,
@@ -410,7 +444,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 19,
@@ -430,7 +466,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 20,
@@ -450,7 +488,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 21,
@@ -470,7 +510,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 22,
@@ -490,7 +532,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 23,
@@ -510,7 +554,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n023.txt"
+      "matrix_file": "matrices/literature_witnesses/n023.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 24,
@@ -530,7 +576,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 25,
@@ -550,7 +598,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 26,
@@ -570,7 +620,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 27,
@@ -590,7 +642,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n027.txt"
+      "matrix_file": "matrices/literature_witnesses/n027.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 28,
@@ -610,7 +664,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 29,
@@ -630,7 +686,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n029.txt"
+      "matrix_file": "matrices/literature_witnesses/n029.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 30,
@@ -650,7 +708,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 31,
@@ -670,7 +730,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n031.txt"
+      "matrix_file": "matrices/literature_witnesses/n031.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 32,
@@ -690,7 +752,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": true,
+      "block_circulant_witness": false
     },
     {
       "n": 33,
@@ -710,7 +774,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n033.txt"
+      "matrix_file": "matrices/literature_witnesses/n033.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 34,
@@ -730,7 +796,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n034.txt"
+      "matrix_file": "matrices/literature_witnesses/n034.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 35,
@@ -750,7 +818,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n035.txt"
+      "matrix_file": "matrices/literature_witnesses/n035.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 36,
@@ -770,7 +840,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 37,
@@ -790,7 +862,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 38,
@@ -810,7 +884,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 39,
@@ -830,7 +906,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n039.txt"
+      "matrix_file": "matrices/literature_witnesses/n039.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 40,
@@ -850,7 +928,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 41,
@@ -870,7 +950,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 42,
@@ -890,7 +972,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 43,
@@ -910,7 +994,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n043.txt"
+      "matrix_file": "matrices/literature_witnesses/n043.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 44,
@@ -930,7 +1016,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 45,
@@ -950,7 +1038,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n045.txt"
+      "matrix_file": "matrices/literature_witnesses/n045.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 46,
@@ -970,7 +1060,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 47,
@@ -990,7 +1082,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n047.txt"
+      "matrix_file": "matrices/literature_witnesses/n047.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 48,
@@ -1010,7 +1104,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 49,
@@ -1030,7 +1126,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n049.txt"
+      "matrix_file": "matrices/literature_witnesses/n049.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 50,
@@ -1050,7 +1148,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 51,
@@ -1070,7 +1170,9 @@
       "previous_D_norm": "17240748636787425652496176509",
       "previous_holder": "T. Rokicki; Kazmenko & Trofimov (2005)",
       "gain_percent": "+3.1053%",
-      "matrix_file": "matrices/literature_witnesses/n051.txt"
+      "matrix_file": "matrices/literature_witnesses/n051.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 52,
@@ -1090,7 +1192,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 53,
@@ -1110,7 +1214,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n053.txt"
+      "matrix_file": "matrices/literature_witnesses/n053.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 54,
@@ -1130,7 +1236,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 55,
@@ -1150,7 +1258,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n055.txt"
+      "matrix_file": "matrices/literature_witnesses/n055.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 56,
@@ -1170,7 +1280,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 57,
@@ -1190,7 +1302,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n057.txt"
+      "matrix_file": "matrices/literature_witnesses/n057.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 58,
@@ -1210,7 +1324,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n058.txt"
+      "matrix_file": "matrices/literature_witnesses/n058.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 59,
@@ -1230,7 +1346,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n059.txt"
+      "matrix_file": "matrices/literature_witnesses/n059.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 60,
@@ -1250,7 +1368,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 61,
@@ -1270,7 +1390,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 62,
@@ -1290,7 +1412,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 63,
@@ -1310,7 +1434,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n063.txt"
+      "matrix_file": "matrices/literature_witnesses/n063.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 64,
@@ -1330,7 +1456,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": true,
+      "block_circulant_witness": false
     },
     {
       "n": 65,
@@ -1350,7 +1478,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n065.txt"
+      "matrix_file": "matrices/literature_witnesses/n065.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 66,
@@ -1370,7 +1500,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 67,
@@ -1390,7 +1522,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n067.txt"
+      "matrix_file": "matrices/literature_witnesses/n067.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 68,
@@ -1410,7 +1544,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 69,
@@ -1430,7 +1566,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n069.txt"
+      "matrix_file": "matrices/literature_witnesses/n069.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 70,
@@ -1450,7 +1588,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n070.txt"
+      "matrix_file": "matrices/literature_witnesses/n070.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 71,
@@ -1470,7 +1610,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n071.txt"
+      "matrix_file": "matrices/literature_witnesses/n071.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 72,
@@ -1490,7 +1632,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 73,
@@ -1510,7 +1654,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n073.txt"
+      "matrix_file": "matrices/literature_witnesses/n073.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 74,
@@ -1530,7 +1676,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 75,
@@ -1550,7 +1698,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n075.txt"
+      "matrix_file": "matrices/literature_witnesses/n075.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 76,
@@ -1570,7 +1720,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 77,
@@ -1590,7 +1742,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n077.txt"
+      "matrix_file": "matrices/literature_witnesses/n077.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 78,
@@ -1610,7 +1764,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n078.txt"
+      "matrix_file": "matrices/literature_witnesses/n078.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 79,
@@ -1630,7 +1786,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n079.txt"
+      "matrix_file": "matrices/literature_witnesses/n079.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 80,
@@ -1650,7 +1808,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 81,
@@ -1670,7 +1830,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n081.txt"
+      "matrix_file": "matrices/literature_witnesses/n081.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 82,
@@ -1690,7 +1852,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 83,
@@ -1710,7 +1874,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n083.txt"
+      "matrix_file": "matrices/literature_witnesses/n083.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 84,
@@ -1730,7 +1896,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 85,
@@ -1750,7 +1918,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n085.txt"
+      "matrix_file": "matrices/literature_witnesses/n085.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 86,
@@ -1770,7 +1940,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 87,
@@ -1790,7 +1962,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n087.txt"
+      "matrix_file": "matrices/literature_witnesses/n087.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 88,
@@ -1810,7 +1984,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 89,
@@ -1831,6 +2007,8 @@
       "previous_holder": "",
       "gain_percent": "",
       "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false,
       "missing_archived_witness": true
     },
     {
@@ -1851,7 +2029,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 91,
@@ -1871,7 +2051,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n091.txt"
+      "matrix_file": "matrices/literature_witnesses/n091.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 92,
@@ -1891,7 +2073,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 93,
@@ -1911,7 +2095,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n093.txt"
+      "matrix_file": "matrices/literature_witnesses/n093.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 94,
@@ -1931,7 +2117,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n094.txt"
+      "matrix_file": "matrices/literature_witnesses/n094.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 95,
@@ -1951,7 +2139,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n095.txt"
+      "matrix_file": "matrices/literature_witnesses/n095.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 96,
@@ -1971,7 +2161,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 97,
@@ -1991,7 +2183,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n097.txt"
+      "matrix_file": "matrices/literature_witnesses/n097.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 98,
@@ -2011,7 +2205,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 99,
@@ -2031,7 +2227,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n099.txt"
+      "matrix_file": "matrices/literature_witnesses/n099.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 100,
@@ -2051,7 +2249,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 101,
@@ -2071,7 +2271,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n101.txt"
+      "matrix_file": "matrices/literature_witnesses/n101.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 102,
@@ -2091,7 +2293,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 103,
@@ -2111,7 +2315,9 @@
       "previous_D_norm": "4982877917417276668857444109702109625212342595955142870593056735757264604",
       "previous_holder": "T. Rokicki (2005)",
       "gain_percent": "+0.00004%",
-      "matrix_file": "matrices/literature_witnesses/n103.txt"
+      "matrix_file": "matrices/literature_witnesses/n103.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 104,
@@ -2131,7 +2337,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 105,
@@ -2151,7 +2359,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n105.txt"
+      "matrix_file": "matrices/literature_witnesses/n105.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 106,
@@ -2171,7 +2381,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n106.txt"
+      "matrix_file": "matrices/literature_witnesses/n106.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 107,
@@ -2191,7 +2403,9 @@
       "previous_D_norm": "25294731747081238220419032446139548036154252602226212345539635897807353222502",
       "previous_holder": "T. Rokicki (2005)",
       "gain_percent": "+0.4364%",
-      "matrix_file": "matrices/literature_witnesses/n107.txt"
+      "matrix_file": "matrices/literature_witnesses/n107.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 108,
@@ -2211,7 +2425,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 109,
@@ -2231,7 +2447,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n109.txt"
+      "matrix_file": "matrices/literature_witnesses/n109.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 110,
@@ -2251,7 +2469,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 111,
@@ -2271,7 +2491,9 @@
       "previous_D_norm": "138038313291959649321247550649988258958126696240067541247128488344873765204141125",
       "previous_holder": "T. Rokicki (2005)",
       "gain_percent": "+1.2629%",
-      "matrix_file": "matrices/literature_witnesses/n111.txt"
+      "matrix_file": "matrices/literature_witnesses/n111.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 112,
@@ -2291,7 +2513,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 113,
@@ -2311,7 +2535,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 114,
@@ -2331,7 +2557,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 115,
@@ -2351,7 +2579,9 @@
       "previous_D_norm": "811241339625052534958171623336405708259290270914662750740706904261078262947495201488",
       "previous_holder": "T. Rokicki (2005)",
       "gain_percent": "+1.8288%",
-      "matrix_file": "matrices/literature_witnesses/n115.txt"
+      "matrix_file": "matrices/literature_witnesses/n115.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 116,
@@ -2371,7 +2601,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 117,
@@ -2391,7 +2623,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": "matrices/literature_witnesses/n117.txt"
+      "matrix_file": "matrices/literature_witnesses/n117.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 118,
@@ -2411,7 +2645,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     },
     {
       "n": 119,
@@ -2431,7 +2667,9 @@
       "previous_D_norm": "5122227511556170410125206972202334525663218042413079731241759281780061187112840281349059",
       "previous_holder": "T. Rokicki (2005)",
       "gain_percent": "+2.1204%",
-      "matrix_file": "matrices/literature_witnesses/n119.txt"
+      "matrix_file": "matrices/literature_witnesses/n119.txt",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": true
     },
     {
       "n": 120,
@@ -2451,7 +2689,9 @@
       "previous_D_norm": "",
       "previous_holder": "",
       "gain_percent": "",
-      "matrix_file": ""
+      "matrix_file": "",
+      "dyadic_walsh_order": false,
+      "block_circulant_witness": false
     }
   ]
 }

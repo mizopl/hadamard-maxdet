@@ -10,6 +10,13 @@ Unified, offline-verifiable reference catalog of maximal determinants of $n \tim
 
 </td>
 </tr>
+<tr>
+<td>
+
+<b>Plain-Language Intuition &amp; Why <code>*</code> Marks Structured Constructions <i>(a layperson's note)</i>.</b> <i>Written from a non-specialist perspective:</i> imagine weighing <i>n</i> objects simultaneously on a two-pan balance (<code>+1</code> = left pan, <code>&minus;1</code> = right pan) or shining light through an <i>n</i>-slit mask across <i>n</i> steps instead of measuring one slot at a time. A larger determinant |det <i>X</i>| keeps those <i>n</i> combined measurements as mutually independent as discrete &plusmn;1 switches allow, shrinking reconstruction noise without paying for extra runs. In real hardware, however, <b>not all orders or constructions are equally practical</b>: whenever engineers can freely choose <i>n</i>, they pick <b>powers of two</b> (<i>n</i> = 2<sup><i>m</i></sup>, marked <code>*</code> on <i>n</i> in the 120-order table — fast Walsh&ndash;Hadamard butterflies using only additions and subtractions) or <b>multiples of 4</b> (<code>0 mod 4*</code>, exact orthogonality <i>R</i> = 1). The 50 open orders (<i>n</i> &equiv; 1, 2, 3 mod 4) become valuable when physical detector channels, clinical cohorts, or industrial batches lock <i>n</i> so padding dummy runs up to 4<i>k</i> is impossible. Even at a fixed open order, <b>block-circulant witnesses (marked with <code>*</code> in the tables below)</b> carry a major engineering advantage over unstructured search grids: because their core consists of cyclic shifts of short seed vectors, an optical spectrometer can step a <b>single etched slit-strip</b> instead of swapping <i>n</i> separate masks, while an FPGA or DSP stores <i>O</i>(<i>n</i>) bits instead of <i>n</i><sup>2</sup> and decodes signals in <i>O</i>(<i>n</i> log <i>n</i>) time via FFT.
+
+</td>
+</tr>
 </table>
 
 ### Normalization & Quick Verification
@@ -36,16 +43,16 @@ python3 verify.py --corrupt               # Adversarial 1-entry mutation self-te
 
 | Residue Class | Orders | Optimal | Open | Upper Bound $B_{\text{class}}(n)$ | Status Summary |
 | :--- | ---: | ---: | ---: | :--- | :--- |
-| **0 mod 4** | 30 | 30 | 0 | Hadamard: $n^{n/2}$ | All 30 multiples of 4 up to 120 achieve $R = 1$ |
+| **0 mod 4**\* | 30 | 30 | 0 | Hadamard: $n^{n/2}$ | All 30 multiples of 4 achieve $R = 1$ (`*` dyadic Walsh $2^m$: 4, 8, 16, 32, 64) |
 | **1 mod 4** | 30 | 11 | 19 | Barba: $\sqrt{2n-1}\,(n-1)^{(n-1)/2}$ | 11 optimal (1, 5, 9, 13, 17, 21, 25, 37, 41, 61, 113); 19 open |
-| **2 mod 4** | 30 | 24 | 6 | Ehlich–Wojtas: $2(n-1)(n-2)^{(n-2)/2}$ | 24 optimal (2, 22 [Brent 2021], 22 EW-tight); 6 open |
+| **2 mod 4** | 30 | 24 | 6 | Ehlich–Wojtas: $2(n-1)(n-2)^{(n-2)/2}$ | 24 optimal (2*, 22 [Brent 2021], 22 EW-tight); 6 open |
 | **3 mod 4** | 30 | 5 | 25 | Ehlich $s$-block Gram ($s \in \{3,5,6,7\}$) | 5 optimal (3, 7, 11, 15, 19); 25 open |
 
 ---
 
 ## 2. Best Known Lower Bounds on All 50 Open Orders (23 <= n <= 119)
 
-To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the 50 open orders ($R(n) < 1$, no published optimality proof) are split into their three residue classes below (`49` rows verified directly from `{-1, +1}` matrices by [`verify.py`](verify.py); exact unrounded integers in [`hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv)):
+To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the 50 open orders ($R(n) < 1$, no published optimality proof) are split into their three residue classes below (`49` rows verified directly from `{-1, +1}` matrices by [`verify.py`](verify.py); exact unrounded integers in [`hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv)). Witnesses marked **`*`** have a verified **block-circulant core** ($O(n)$ seed storage, single stepped slit-mask, $O(n \log n)$ FFT application):
 
 ### 2.1 Orders n ≡ 1 (mod 4) — Barba Regime (19 Open Orders)
 
@@ -65,15 +72,15 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | **77** | 3.7699 × 10<sup>49</sup> | 183 · 19<sup>37</sup> | 0.7787 | B. Solomon & W. P. Orrick | 2003 | [n077.txt](matrices/literature_witnesses/n077.txt) |
 | **81** | 1.0775 × 10<sup>53</sup> | 196 · 20<sup>39</sup> | 0.7723 | N. Farmakis & S. Kounias | 1987 | [n081.txt](matrices/literature_witnesses/n081.txt) |
 | **85** | 3.4902 × 10<sup>56</sup> | 4509 · 21<sup>40</sup> | 0.7865 | B. Solomon & W. P. Orrick | 2003 | [n085.txt](matrices/literature_witnesses/n085.txt) |
-| **89** | 1.1657 × 10<sup>60</sup> | 220 · 22<sup>43</sup> | 0.7516 | N. Farmakis & S. Kounias | 1987 | none* |
+| **89** | 1.1657 × 10<sup>60</sup> | 220 · 22<sup>43</sup> | 0.7516 | N. Farmakis & S. Kounias | 1987 | none† |
 | **93** | 4.5305 × 10<sup>63</sup> | 239 · 23<sup>45</sup> | 0.7640 | W. P. Orrick & B. Solomon | 2003 | [n093.txt](matrices/literature_witnesses/n093.txt) |
 | **97** | 1.8974 × 10<sup>67</sup> | 256 · 24<sup>47</sup> | 0.7678 | B. Solomon & W. P. Orrick | 2003 | [n097.txt](matrices/literature_witnesses/n097.txt) |
 | **101** | 8.9741 × 10<sup>70</sup> | 7110 · 25<sup>48</sup> | 0.8024 | W. P. Orrick & B. Solomon | 2003 | [n101.txt](matrices/literature_witnesses/n101.txt) |
-| **105** | 3.8474 × 10<sup>74</sup> | — | 0.7022 | T. Rokicki | 2005 | [n105.txt](matrices/literature_witnesses/n105.txt) |
-| **109** | 1.8775 × 10<sup>78</sup> | — | 0.6482 | T. Rokicki | 2005 | [n109.txt](matrices/literature_witnesses/n109.txt) |
-| **117** | 7.2315 × 10<sup>85</sup> | — | 0.7186 | T. Rokicki | 2005 | [n117.txt](matrices/literature_witnesses/n117.txt) |
+| **105** | 3.8474 × 10<sup>74</sup> | — | 0.7022 | T. Rokicki | 2005 | [n105.txt](matrices/literature_witnesses/n105.txt)* |
+| **109** | 1.8775 × 10<sup>78</sup> | — | 0.6482 | T. Rokicki | 2005 | [n109.txt](matrices/literature_witnesses/n109.txt)* |
+| **117** | 7.2315 × 10<sup>85</sup> | — | 0.7186 | T. Rokicki | 2005 | [n117.txt](matrices/literature_witnesses/n117.txt)* |
 
-<sub>* On <b>n = 89</b>, the lower bound 220 · 22<sup>43</sup> was derived by Farmakis & Kounias (1987) from an order-88 max-excess Hadamard matrix; no explicit 89 × 89 matrix was archived in <code>MaxDet</code>.</sub>
+<sub>† On <b>n = 89</b>, the lower bound 220 · 22<sup>43</sup> was derived by Farmakis & Kounias (1987) from an order-88 max-excess Hadamard matrix; no explicit 89 × 89 matrix was archived in <code>MaxDet</code>.</sub>
 
 ### 2.2 Orders n ≡ 2 (mod 4) — Ehlich–Wojtas Regime (6 Open Orders)
 
@@ -81,12 +88,12 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 
 | n | D<sub>norm</sub> | Factored Form | R = \|det\|/B | Record Holder | Year | Witness |
 | ---: | ---: | :--- | ---: | :--- | :---: | :---: |
-| **34** | 9.0072 × 10<sup>15</sup> | 256 · 8<sup>15</sup> | 0.9697 | W. P. Orrick | 2005 | [n034.txt](matrices/literature_witnesses/n034.txt) |
-| **58** | 6.5774 × 10<sup>33</sup> | — | 0.9345 | T. Rokicki; Kazmenko & Trofimov | 2005 | [n058.txt](matrices/literature_witnesses/n058.txt) |
-| **70** | 4.6534 × 10<sup>43</sup> | 1156 · 17<sup>33</sup> | 0.9855 | W. P. Orrick & T. Rokicki | 2005 | [n070.txt](matrices/literature_witnesses/n070.txt) |
-| **78** | 2.9042 × 10<sup>50</sup> | — | 0.9636 | T. Rokicki | 2005 | [n078.txt](matrices/literature_witnesses/n078.txt) |
-| **94** | 3.9312 × 10<sup>64</sup> | — | 0.9695 | T. Rokicki | 2005 | [n094.txt](matrices/literature_witnesses/n094.txt) |
-| **106** | 3.9414 × 10<sup>75</sup> | 2704 · 26<sup>51</sup> | 0.9905 | W. P. Orrick | 2005 | [n106.txt](matrices/literature_witnesses/n106.txt) |
+| **34** | 9.0072 × 10<sup>15</sup> | 256 · 8<sup>15</sup> | 0.9697 | W. P. Orrick | 2005 | [n034.txt](matrices/literature_witnesses/n034.txt)* |
+| **58** | 6.5774 × 10<sup>33</sup> | — | 0.9345 | T. Rokicki; Kazmenko & Trofimov | 2005 | [n058.txt](matrices/literature_witnesses/n058.txt)* |
+| **70** | 4.6534 × 10<sup>43</sup> | 1156 · 17<sup>33</sup> | 0.9855 | W. P. Orrick & T. Rokicki | 2005 | [n070.txt](matrices/literature_witnesses/n070.txt)* |
+| **78** | 2.9042 × 10<sup>50</sup> | — | 0.9636 | T. Rokicki | 2005 | [n078.txt](matrices/literature_witnesses/n078.txt)* |
+| **94** | 3.9312 × 10<sup>64</sup> | — | 0.9695 | T. Rokicki | 2005 | [n094.txt](matrices/literature_witnesses/n094.txt)* |
+| **106** | 3.9414 × 10<sup>75</sup> | 2704 · 26<sup>51</sup> | 0.9905 | W. P. Orrick | 2005 | [n106.txt](matrices/literature_witnesses/n106.txt)* |
 
 ### 2.3 Orders n ≡ 3 (mod 4) — Ehlich Block-Gram Regime (25 Open Orders)
 
@@ -101,40 +108,42 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | **39** | 2.4015 × 10<sup>19</sup> | 1440 · 9<sup>17</sup> | 0.9527 | H. Tamura | 2011 | [n039.txt](matrices/literature_witnesses/n039.txt) |
 | **43** | 1.8900 × 10<sup>22</sup> | 1890 · 10<sup>19</sup> | 0.9663 | H. Tamura | 2011 | [n043.txt](matrices/literature_witnesses/n043.txt) |
 | **47** | 1.6888 × 10<sup>25</sup> | 3,037,500 · 11<sup>18</sup> | 0.9239 | Orrick, Solomon et al. | 2003 | [n047.txt](matrices/literature_witnesses/n047.txt) |
-| **51** | 1.7776 × 10<sup>28</sup> | — | 0.8776 | **Butbaia, Gukov et al.** (+3.11%) | **2026** | [n051.txt](matrices/literature_witnesses/n051.txt) |
+| **51** | 1.7776 × 10<sup>28</sup> | — | 0.8776 | **Butbaia, Gukov et al.** (+3.11%) | **2026** | [n051.txt](matrices/literature_witnesses/n051.txt)* |
 | **55** | 2.2572 × 10<sup>31</sup> | — | 0.8593 | T. Rokicki; Kazmenko & Trofimov | 2005 | [n055.txt](matrices/literature_witnesses/n055.txt) |
 | **59** | 3.8031 × 10<sup>34</sup> | 4312 · 14<sup>27</sup> | 0.9653 | H. Tamura | 2005 | [n059.txt](matrices/literature_witnesses/n059.txt) |
 | **63** | 6.5387 × 10<sup>37</sup> | 5115 · 15<sup>29</sup> | 0.9662 | H. Tamura | 2011 | [n063.txt](matrices/literature_witnesses/n063.txt) |
-| **67** | 1.1400 × 10<sup>41</sup> | — | 0.8635 | T. Rokicki | 2005 | [n067.txt](matrices/literature_witnesses/n067.txt) |
+| **67** | 1.1400 × 10<sup>41</sup> | — | 0.8635 | T. Rokicki | 2005 | [n067.txt](matrices/literature_witnesses/n067.txt)* |
 | **71** | 2.5553 × 10<sup>44</sup> | 31,186,944 · 17<sup>30</sup> | 0.8804 | T. Rokicki | 2005 | [n071.txt](matrices/literature_witnesses/n071.txt) |
-| **75** | 6.1512 × 10<sup>47</sup> | — | 0.8613 | T. Rokicki | 2005 | [n075.txt](matrices/literature_witnesses/n075.txt) |
+| **75** | 6.1512 × 10<sup>47</sup> | — | 0.8613 | T. Rokicki | 2005 | [n075.txt](matrices/literature_witnesses/n075.txt)* |
 | **79** | 1.6796 × 10<sup>51</sup> | — | 0.8591 | T. Rokicki | 2005 | [n079.txt](matrices/literature_witnesses/n079.txt) |
-| **83** | 5.0710 × 10<sup>54</sup> | — | 0.8561 | T. Rokicki | 2005 | [n083.txt](matrices/literature_witnesses/n083.txt) |
-| **87** | 1.6851 × 10<sup>58</sup> | — | 0.8527 | T. Rokicki | 2005 | [n087.txt](matrices/literature_witnesses/n087.txt) |
+| **83** | 5.0710 × 10<sup>54</sup> | — | 0.8561 | T. Rokicki | 2005 | [n083.txt](matrices/literature_witnesses/n083.txt)* |
+| **87** | 1.6851 × 10<sup>58</sup> | — | 0.8527 | T. Rokicki | 2005 | [n087.txt](matrices/literature_witnesses/n087.txt)* |
 | **91** | 6.1448 × 10<sup>61</sup> | — | 0.8501 | T. Rokicki | 2005 | [n091.txt](matrices/literature_witnesses/n091.txt) |
-| **95** | 2.4387 × 10<sup>65</sup> | — | 0.8447 | T. Rokicki | 2005 | [n095.txt](matrices/literature_witnesses/n095.txt) |
+| **95** | 2.4387 × 10<sup>65</sup> | — | 0.8447 | T. Rokicki | 2005 | [n095.txt](matrices/literature_witnesses/n095.txt)* |
 | **99** | 1.0657 × 10<sup>69</sup> | — | 0.8496 | T. Rokicki | 2005 | [n099.txt](matrices/literature_witnesses/n099.txt) |
-| **103** | 4.9829 × 10<sup>72</sup> | — | 0.8433 | **Butbaia, Gukov et al.** (+0.00004%) | **2026** | [n103.txt](matrices/literature_witnesses/n103.txt) |
-| **107** | 2.5405 × 10<sup>76</sup> | — | 0.8445 | **Butbaia, Gukov et al.** (+0.44%) | **2026** | [n107.txt](matrices/literature_witnesses/n107.txt) |
-| **111** | 1.3978 × 10<sup>80</sup> | — | 0.8469 | **Butbaia, Gukov et al.** (+1.26%) | **2026** | [n111.txt](matrices/literature_witnesses/n111.txt) |
-| **115** | 8.2608 × 10<sup>83</sup> | — | 0.8488 | **Butbaia, Gukov et al.** (+1.83%) | **2026** | [n115.txt](matrices/literature_witnesses/n115.txt) |
-| **119** | 5.2308 × 10<sup>87</sup> | — | 0.8503 | **Butbaia, Gukov et al.** (+2.12%) | **2026** | [n119.txt](matrices/literature_witnesses/n119.txt) |
+| **103** | 4.9829 × 10<sup>72</sup> | — | 0.8433 | **Butbaia, Gukov et al.** (+0.00004%) | **2026** | [n103.txt](matrices/literature_witnesses/n103.txt)* |
+| **107** | 2.5405 × 10<sup>76</sup> | — | 0.8445 | **Butbaia, Gukov et al.** (+0.44%) | **2026** | [n107.txt](matrices/literature_witnesses/n107.txt)* |
+| **111** | 1.3978 × 10<sup>80</sup> | — | 0.8469 | **Butbaia, Gukov et al.** (+1.26%) | **2026** | [n111.txt](matrices/literature_witnesses/n111.txt)* |
+| **115** | 8.2608 × 10<sup>83</sup> | — | 0.8488 | **Butbaia, Gukov et al.** (+1.83%) | **2026** | [n115.txt](matrices/literature_witnesses/n115.txt)* |
+| **119** | 5.2308 × 10<sup>87</sup> | — | 0.8503 | **Butbaia, Gukov et al.** (+2.12%) | **2026** | [n119.txt](matrices/literature_witnesses/n119.txt)* |
 
 <br>
 
 <details>
 <summary><strong>Complete 120-Order Master Table (1 <= n <= 120, Proven Optimal + Open)</strong></summary>
 
+<sub><code>*</code> on <code>n</code> marks dyadic Sylvester / Walsh–Hadamard orders (<i>n</i> = 2<sup><i>m</i></sup>, fast <i>O</i>(<i>n</i> log <i>n</i>) butterfly); <code>*</code> on <code>Witness</code> marks open-order matrices with a verified block-circulant core.</sub>
+
 | n | mod 4 | Status | D<sub>norm</sub> | Factored Form | R = \|det\|/B | Attribution | Year | Ref | Witness |
 | ---: | :---: | :---: | ---: | :--- | ---: | :--- | :---: | :---: | :---: |
-| 1 | 1 | OPT | 1 | 1 | 1.0000 | Sylvester | 1867 | Syl1867 | — |
-| 2 | 2 | OPT | 1 | 1 | 1.0000 | Sylvester | 1867 | Syl1867 | — |
+| 1* | 1 | OPT | 1 | 1 | 1.0000 | Sylvester | 1867 | Syl1867 | — |
+| 2* | 2 | OPT | 1 | 1 | 1.0000 | Sylvester | 1867 | Syl1867 | — |
 | 3 | 3 | OPT | 1 | 1 | 1.0000 | Sylvester; Williamson | 1867 | Syl1867 | — |
-| 4 | 0 | OPT | 2 | 2 | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
+| 4* | 0 | OPT | 2 | 2 | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
 | 5 | 1 | OPT | 3 | 3 | 1.0000 | Mood (Barba bound) | 1946 | Moo1946 | — |
 | 6 | 2 | OPT | 5 | 5 | 1.0000 | Ehlich (EW bound) | 1964 | Ehl1964a | — |
 | 7 | 3 | OPT | 9 | 9 | 0.9820 | Williamson | 1946 | Wil1946 | — |
-| 8 | 0 | OPT | 32 | 32 | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
+| 8* | 0 | OPT | 32 | 32 | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
 | 9 | 1 | OPT | 56 | 56 | 0.8489 | Ehlich | 1964 | Ehl1964a | — |
 | 10 | 2 | OPT | 144 | 144 | 1.0000 | Ehlich (EW bound) | 1964 | Ehl1964a | — |
 | 11 | 3 | OPT | 320 | 320 | 0.9449 | Ehlich | 1964 | Ehl1964b | — |
@@ -142,7 +151,7 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 13 | 1 | OPT | 3,645 | 3,645 | 1.0000 | Raghavarao (Barba bound) | 1959 | Rag1959 | — |
 | 14 | 2 | OPT | 9,477 | 9,477 | 1.0000 | Ehlich (EW bound) | 1964 | Ehl1964a | — |
 | 15 | 3 | OPT | 25,515 | 25,515 | 0.9707 | Ehlich & Zeller; Cohn | 1962 | EZ1962 | — |
-| 16 | 0 | OPT | 131,072 | 131,072 | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
+| 16* | 0 | OPT | 131,072 | 131,072 | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
 | 17 | 1 | OPT | 327,680 | 327,680 | 0.8704 | Moyssiadis & Kounias | 1982 | MK1982 | — |
 | 18 | 2 | OPT | 1.1141 × 10<sup>6</sup> | 1,114,112 | 1.0000 | Ehlich (EW bound) | 1964 | Ehl1964a | — |
 | 19 | 3 | OPT | 3.4120 × 10<sup>6</sup> | 3,411,968 | 0.9750 | Cohn (1989); opt. Brent et al. | 2011 | BOOZ2011 | — |
@@ -158,9 +167,9 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 29 | 1 | OPEN | 4.4292 × 10<sup>12</sup> | 320 · 7<sup>12</sup> | 0.8650 | B. Solomon | 2002 | Sol2002 | [txt](matrices/literature_witnesses/n029.txt) |
 | 30 | 2 | OPT | 1.9668 × 10<sup>13</sup> | 203 · 7<sup>13</sup> | 1.0000 | Ehlich (EW bound) | 1964 | Ehl1964a | — |
 | 31 | 3 | OPEN | 7.5961 × 10<sup>13</sup> | 784 · 7<sup>13</sup> | 0.9561 | H. Tamura | 2005 | Tam2005 | [txt](matrices/literature_witnesses/n031.txt) |
-| 32 | 0 | OPT | 5.6295 × 10<sup>14</sup> | 16 · 8<sup>15</sup> | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
+| 32* | 0 | OPT | 5.6295 × 10<sup>14</sup> | 16 · 8<sup>15</sup> | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
 | 33 | 1 | OPEN | 1.9395 × 10<sup>15</sup> | 441 · 8<sup>14</sup> | 0.8547 | B. Solomon | 2002 | Sol2002 | [txt](matrices/literature_witnesses/n033.txt) |
-| 34 | 2 | OPEN | 9.0072 × 10<sup>15</sup> | 256 · 8<sup>15</sup> | 0.9697 | W. P. Orrick | 2005 | Orr2005 | [txt](matrices/literature_witnesses/n034.txt) |
+| 34 | 2 | OPEN | 9.0072 × 10<sup>15</sup> | 256 · 8<sup>15</sup> | 0.9697 | W. P. Orrick | 2005 | Orr2005 | [txt](matrices/literature_witnesses/n034.txt)* |
 | 35 | 3 | OPEN | 3.7436 × 10<sup>16</sup> | 1064 · 8<sup>15</sup> | 0.9379 | H. Tamura | 2011 | Tam2011 | [txt](matrices/literature_witnesses/n035.txt) |
 | 36 | 0 | OPT | 3.0019 × 10<sup>17</sup> | 18 · 9<sup>17</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 37 | 1 | OPT | 1.2008 × 10<sup>18</sup> | 72 · 9<sup>17</sup> | 0.9363 | Brent, Orrick et al. | 2011 | BOOZ2011 | — |
@@ -177,51 +186,51 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 48 | 0 | OPT | 1.5899 × 10<sup>26</sup> | 24 · 12<sup>23</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 49 | 1 | OPEN | 6.3597 × 10<sup>26</sup> | 96 · 12<sup>23</sup> | 0.8123 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n049.txt) |
 | 50 | 2 | OPT | 3.8953 × 10<sup>27</sup> | 588 · 12<sup>23</sup> | 1.0000 | Yang (EW bound) | 1968 | Yan1968 | — |
-| 51 | 3 | OPEN | 1.7776 × 10<sup>28</sup> | — | 0.8776 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n051.txt) |
+| 51 | 3 | OPEN | 1.7776 × 10<sup>28</sup> | — | 0.8776 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n051.txt)* |
 | 52 | 0 | OPT | 1.8347 × 10<sup>29</sup> | 26 · 13<sup>25</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 53 | 1 | OPEN | 7.4092 × 10<sup>29</sup> | 105 · 13<sup>25</sup> | 0.7882 | Orrick, Solomon et al. | 2003 | OSDS2003 | [txt](matrices/literature_witnesses/n053.txt) |
 | 54 | 2 | OPT | 4.8619 × 10<sup>30</sup> | 689 · 13<sup>25</sup> | 1.0000 | Yang (EW bound) | 1968 | Yan1968 | — |
 | 55 | 3 | OPEN | 2.2572 × 10<sup>31</sup> | — | 0.8593 | T. Rokicki; Kazmenko & Trofimov | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n055.txt) |
 | 56 | 0 | OPT | 2.4695 × 10<sup>32</sup> | 28 · 14<sup>27</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 57 | 1 | OPEN | 1.1730 × 10<sup>33</sup> | 133 · 14<sup>27</sup> | 0.8937 | J.-C. Meyrignac & B. Felgenhauer | 2005 | Mey2005 | [txt](matrices/literature_witnesses/n057.txt) |
-| 58 | 2 | OPEN | 6.5774 × 10<sup>33</sup> | — | 0.9345 | T. Rokicki; Kazmenko & Trofimov | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n058.txt) |
+| 58 | 2 | OPEN | 6.5774 × 10<sup>33</sup> | — | 0.9345 | T. Rokicki; Kazmenko & Trofimov | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n058.txt)* |
 | 59 | 3 | OPEN | 3.8031 × 10<sup>34</sup> | 4312 · 14<sup>27</sup> | 0.9653 | H. Tamura | 2005 | Tam2005 | [txt](matrices/literature_witnesses/n059.txt) |
 | 60 | 0 | OPT | 3.8350 × 10<sup>35</sup> | 30 · 15<sup>29</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 61 | 1 | OPT | 2.1093 × 10<sup>36</sup> | 165 · 15<sup>29</sup> | 1.0000 | Brouwer (Barba bound) | 1983 | Bro1983 | — |
 | 62 | 2 | OPT | 1.1697 × 10<sup>37</sup> | 915 · 15<sup>29</sup> | 1.0000 | Yang (EW bound) | 1968 | Yan1968 | — |
 | 63 | 3 | OPEN | 6.5387 × 10<sup>37</sup> | 5115 · 15<sup>29</sup> | 0.9662 | H. Tamura | 2011 | Tam2011 | [txt](matrices/literature_witnesses/n063.txt) |
-| 64 | 0 | OPT | 6.8056 × 10<sup>38</sup> | 32 · 16<sup>31</sup> | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
+| 64* | 0 | OPT | 6.8056 × 10<sup>38</sup> | 32 · 16<sup>31</sup> | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
 | 65 | 1 | OPEN | 3.1476 × 10<sup>39</sup> | 148 · 16<sup>31</sup> | 0.8144 | W. P. Orrick & B. Solomon | 2003 | OS2007 | [txt](matrices/literature_witnesses/n065.txt) |
 | 66 | 2 | OPT | 2.2118 × 10<sup>40</sup> | 1040 · 16<sup>31</sup> | 1.0000 | Yang (EW bound) | 1968 | Yan1968 | — |
-| 67 | 3 | OPEN | 1.1400 × 10<sup>41</sup> | — | 0.8635 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n067.txt) |
+| 67 | 3 | OPEN | 1.1400 × 10<sup>41</sup> | — | 0.8635 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n067.txt)* |
 | 68 | 0 | OPT | 1.3687 × 10<sup>42</sup> | 34 · 17<sup>33</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 69 | 1 | OPEN | 6.2394 × 10<sup>42</sup> | 155 · 17<sup>33</sup> | 0.7790 | Orrick, Solomon et al. | 2003 | OSDS2003 | [txt](matrices/literature_witnesses/n069.txt) |
-| 70 | 2 | OPEN | 4.6534 × 10<sup>43</sup> | 1156 · 17<sup>33</sup> | 0.9855 | W. P. Orrick & T. Rokicki | 2005 | Orr2005 | [txt](matrices/literature_witnesses/n070.txt) |
+| 70 | 2 | OPEN | 4.6534 × 10<sup>43</sup> | 1156 · 17<sup>33</sup> | 0.9855 | W. P. Orrick & T. Rokicki | 2005 | Orr2005 | [txt](matrices/literature_witnesses/n070.txt)* |
 | 71 | 3 | OPEN | 2.5553 × 10<sup>44</sup> | 31,186,944 · 17<sup>30</sup> | 0.8804 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n071.txt) |
 | 72 | 0 | OPT | 3.0963 × 10<sup>45</sup> | 36 · 18<sup>35</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 73 | 1 | OPEN | 1.4965 × 10<sup>46</sup> | 174 · 18<sup>35</sup> | 0.8028 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n073.txt) |
 | 74 | 2 | OPT | 1.1301 × 10<sup>47</sup> | 1314 · 18<sup>35</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
-| 75 | 3 | OPEN | 6.1512 × 10<sup>47</sup> | — | 0.8613 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n075.txt) |
+| 75 | 3 | OPEN | 6.1512 × 10<sup>47</sup> | — | 0.8613 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n075.txt)* |
 | 76 | 0 | OPT | 7.8283 × 10<sup>48</sup> | 38 · 19<sup>37</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 77 | 1 | OPEN | 3.7699 × 10<sup>49</sup> | 183 · 19<sup>37</sup> | 0.7787 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n077.txt) |
-| 78 | 2 | OPEN | 2.9042 × 10<sup>50</sup> | — | 0.9636 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n078.txt) |
+| 78 | 2 | OPEN | 2.9042 × 10<sup>50</sup> | — | 0.9636 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n078.txt)* |
 | 79 | 3 | OPEN | 1.6796 × 10<sup>51</sup> | — | 0.8591 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n079.txt) |
 | 80 | 0 | OPT | 2.1990 × 10<sup>52</sup> | 40 · 20<sup>39</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 81 | 1 | OPEN | 1.0775 × 10<sup>53</sup> | 196 · 20<sup>39</sup> | 0.7723 | N. Farmakis & S. Kounias | 1987 | FK1987 | [txt](matrices/literature_witnesses/n081.txt) |
 | 82 | 2 | OPT | 8.9060 × 10<sup>53</sup> | 1620 · 20<sup>39</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
-| 83 | 3 | OPEN | 5.0710 × 10<sup>54</sup> | — | 0.8561 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n083.txt) |
+| 83 | 3 | OPEN | 5.0710 × 10<sup>54</sup> | — | 0.8561 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n083.txt)* |
 | 84 | 0 | OPT | 6.8272 × 10<sup>55</sup> | 42 · 21<sup>41</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 85 | 1 | OPEN | 3.4902 × 10<sup>56</sup> | 4509 · 21<sup>40</sup> | 0.7865 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n085.txt) |
 | 86 | 2 | OPT | 2.9015 × 10<sup>57</sup> | 1785 · 21<sup>41</sup> | 1.0000 | Chadjipantelis & Kounias (EW bound) | 1985 | CK1985 | — |
-| 87 | 3 | OPEN | 1.6851 × 10<sup>58</sup> | — | 0.8527 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n087.txt) |
+| 87 | 3 | OPEN | 1.6851 × 10<sup>58</sup> | — | 0.8527 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n087.txt)* |
 | 88 | 0 | OPT | 2.3315 × 10<sup>59</sup> | 44 · 22<sup>43</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 89 | 1 | OPEN | 1.1657 × 10<sup>60</sup> | 220 · 22<sup>43</sup> | 0.7516 | N. Farmakis & S. Kounias | 1987 | FK1987 | — |
 | 90 | 2 | OPT | 1.0375 × 10<sup>61</sup> | 1958 · 22<sup>43</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
 | 91 | 3 | OPEN | 6.1448 × 10<sup>61</sup> | — | 0.8501 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n091.txt) |
 | 92 | 0 | OPT | 8.7199 × 10<sup>62</sup> | 46 · 23<sup>45</sup> | 1.0000 | Baumert, Golomb & Hall | 1962 | BGH1962 | — |
 | 93 | 1 | OPEN | 4.5305 × 10<sup>63</sup> | 239 · 23<sup>45</sup> | 0.7640 | W. P. Orrick & B. Solomon | 2003 | OS2007 | [txt](matrices/literature_witnesses/n093.txt) |
-| 94 | 2 | OPEN | 3.9312 × 10<sup>64</sup> | — | 0.9695 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n094.txt) |
-| 95 | 3 | OPEN | 2.4387 × 10<sup>65</sup> | — | 0.8447 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n095.txt) |
+| 94 | 2 | OPEN | 3.9312 × 10<sup>64</sup> | — | 0.9695 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n094.txt)* |
+| 95 | 3 | OPEN | 2.4387 × 10<sup>65</sup> | — | 0.8447 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n095.txt)* |
 | 96 | 0 | OPT | 3.5577 × 10<sup>66</sup> | 48 · 24<sup>47</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 97 | 1 | OPEN | 1.8974 × 10<sup>67</sup> | 256 · 24<sup>47</sup> | 0.7678 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n097.txt) |
 | 98 | 2 | OPT | 1.7255 × 10<sup>68</sup> | 2328 · 24<sup>47</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
@@ -229,23 +238,23 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 100 | 0 | OPT | 1.5777 × 10<sup>70</sup> | 50 · 25<sup>49</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 101 | 1 | OPEN | 8.9741 × 10<sup>70</sup> | 7110 · 25<sup>48</sup> | 0.8024 | W. P. Orrick & B. Solomon | 2003 | OS2007 | [txt](matrices/literature_witnesses/n101.txt) |
 | 102 | 2 | OPT | 7.9675 × 10<sup>71</sup> | 2525 · 25<sup>49</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
-| 103 | 3 | OPEN | 4.9829 × 10<sup>72</sup> | — | 0.8433 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n103.txt) |
+| 103 | 3 | OPEN | 4.9829 × 10<sup>72</sup> | — | 0.8433 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n103.txt)* |
 | 104 | 0 | OPT | 7.5796 × 10<sup>73</sup> | 52 · 26<sup>51</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
-| 105 | 1 | OPEN | 3.8474 × 10<sup>74</sup> | — | 0.7022 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n105.txt) |
-| 106 | 2 | OPEN | 3.9414 × 10<sup>75</sup> | 2704 · 26<sup>51</sup> | 0.9905 | W. P. Orrick | 2005 | Orr2005 | [txt](matrices/literature_witnesses/n106.txt) |
-| 107 | 3 | OPEN | 2.5405 × 10<sup>76</sup> | — | 0.8445 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n107.txt) |
+| 105 | 1 | OPEN | 3.8474 × 10<sup>74</sup> | — | 0.7022 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n105.txt)* |
+| 106 | 2 | OPEN | 3.9414 × 10<sup>75</sup> | 2704 · 26<sup>51</sup> | 0.9905 | W. P. Orrick | 2005 | Orr2005 | [txt](matrices/literature_witnesses/n106.txt)* |
+| 107 | 3 | OPEN | 2.5405 × 10<sup>76</sup> | — | 0.8445 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n107.txt)* |
 | 108 | 0 | OPT | 3.9325 × 10<sup>77</sup> | 54 · 27<sup>53</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
-| 109 | 1 | OPEN | 1.8775 × 10<sup>78</sup> | — | 0.6482 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n109.txt) |
+| 109 | 1 | OPEN | 1.8775 × 10<sup>78</sup> | — | 0.6482 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n109.txt)* |
 | 110 | 2 | OPT | 2.1432 × 10<sup>79</sup> | 2943 · 27<sup>53</sup> | 1.0000 | Fletcher & Seberry (EW bound) | 2001 | FS2001 | — |
-| 111 | 3 | OPEN | 1.3978 × 10<sup>80</sup> | — | 0.8469 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n111.txt) |
+| 111 | 3 | OPEN | 1.3978 × 10<sup>80</sup> | — | 0.8469 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n111.txt)* |
 | 112 | 0 | OPT | 2.1973 × 10<sup>81</sup> | 56 · 28<sup>55</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 113 | 1 | OPT | 1.6479 × 10<sup>82</sup> | 420 · 28<sup>55</sup> | 1.0000 | Brouwer (Barba bound) | 1983 | Bro1983 | — |
 | 114 | 2 | OPT | 1.2414 × 10<sup>83</sup> | 3164 · 28<sup>55</sup> | 1.0000 | Koukouvinos, Kounias & Seberry | 1989 | KKS1989 | — |
-| 115 | 3 | OPEN | 8.2608 × 10<sup>83</sup> | — | 0.8488 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n115.txt) |
+| 115 | 3 | OPEN | 8.2608 × 10<sup>83</sup> | — | 0.8488 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n115.txt)* |
 | 116 | 0 | OPT | 1.3186 × 10<sup>85</sup> | 58 · 29<sup>57</sup> | 1.0000 | Baumert | 1966 | Bau1966 | — |
-| 117 | 1 | OPEN | 7.2315 × 10<sup>85</sup> | — | 0.7186 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n117.txt) |
+| 117 | 1 | OPEN | 7.2315 × 10<sup>85</sup> | — | 0.7186 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n117.txt)* |
 | 118 | 2 | OPT | 7.7138 × 10<sup>86</sup> | 3393 · 29<sup>57</sup> | 1.0000 | Fletcher, Koukouvinos & Seberry | 2002 | FKS2002 | — |
-| 119 | 3 | OPEN | 5.2308 × 10<sup>87</sup> | — | 0.8503 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n119.txt) |
+| 119 | 3 | OPEN | 5.2308 × 10<sup>87</sup> | — | 0.8503 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n119.txt)* |
 | 120 | 0 | OPT | 8.4782 × 10<sup>88</sup> | 60 · 30<sup>59</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 </details>
 
