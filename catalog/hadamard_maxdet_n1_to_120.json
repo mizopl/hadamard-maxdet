@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_utc": "2026-11-10T21:45:15Z",
+  "generated_utc": "2026-11-10T21:58:39Z",
   "edition": "v1.0-literature-baseline",
   "scope": "Unified Hadamard Maximal Determinant Catalog for orders 1 <= n <= 120",
   "normalization": "D_norm = |det(X)| / 2^(n-1) for X in {-1, +1}^(n x n) (OEIS A003432); det_exact = |det(X)| (OEIS A003433)",
@@ -424,7 +424,7 @@
       "display_D_norm": "3411968",
       "scientific_D_norm": "3411968",
       "ratio_to_bound": "0.97501687",
-      "current_holder": "Cohn (1989); opt. BOOZ (2011)",
+      "current_holder": "Cohn (1989); opt. Brent et al.",
       "year": 2011,
       "ref_key": "BOOZ2011",
       "previous_D_norm": "",
@@ -484,7 +484,7 @@
       "display_D_norm": "195312500",
       "scientific_D_norm": "1.9531e+8",
       "ratio_to_bound": "0.95238095",
-      "current_holder": "Ehlich (1964); opt. Brent (2021)",
+      "current_holder": "Ehlich (1964); opt. Brent",
       "year": 2021,
       "ref_key": "Bre2021",
       "previous_D_norm": "",
@@ -2110,7 +2110,7 @@
       "ref_key": "BG2026",
       "previous_D_norm": "4982877917417276668857444109702109625212342595955142870593056735757264604",
       "previous_holder": "T. Rokicki (2005)",
-      "gain_percent": "+0.0000%",
+      "gain_percent": "+0.00004%",
       "matrix_file": "matrices/literature_witnesses/n103.txt"
     },
     {
