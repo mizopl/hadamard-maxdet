@@ -475,19 +475,6 @@ Machine-readable BibTeX entries for all references below are provided in [`catal
 - **Scope note on complex generalizations:** Recent papers on roots-of-unity determinants (e.g., G. Nuñez Ponasso, [arXiv:2503.11114](https://arxiv.org/abs/2503.11114), 2025; X. Dong, [arXiv:2610.40679](https://arxiv.org/abs/2610.40679), 2026) study entries in $\mu_m \subset \mathbb{C}$ ($m \ge 3$) rather than real $\{-1, +1\}$ sign matrices.
 </details>
 
-### Citation
-
-```bibtex
-@misc{westar2026hadamard,
-  author       = {we* and @mizopl},
-  title        = {Hadamard Maximal Determinant Catalog (1 <= n <= 120) and New Constructive Records},
-  year         = {2026},
-  month        = nov,
-  howpublished = {\url{https://github.com/mizopl/hadamard-maxdet}},
-  note         = {Engineered and verified by we* (PROOFER v20 powered by Gemini + @mizopl)}
-}
-```
-
 ---
 
 <sub>Engineered and verified by **we\*** (`PROOFER v20` powered by Gemini + `@mizopl`) · Released under the [MIT License](LICENSE).</sub>
