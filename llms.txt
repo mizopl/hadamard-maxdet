@@ -1,6 +1,6 @@
 # Hadamard Maximal Determinant Catalog (1 <= n <= 120)
 
-> Unified, offline-verifiable reference catalog and exact-integer Bareiss verification suite for maximal determinants of n x n {+1, -1} sign matrices across all orders 1 <= n <= 120 (OEIS A003432 / A003433), consolidating W. P. Orrick's archived MaxDet database (2002-2012), T. Rokicki (2005), H. Tamura (2005-2011), R. P. Brent (2021), and Butbaia, Gukov et al. (arXiv:2608.22518, Oct 2026), with explicit witness matrices for 49/50 open orders.
+> Unified, offline-verifiable reference catalog and exact-integer Bareiss verification suite for maximal determinants of n x n {+1, -1} sign matrices across all orders 1 <= n <= 120 (OEIS A003432 / A003433), consolidating W. P. Orrick's archived MaxDet database (2002-2012), T. Rokicki (2005), H. Tamura (2005-2011), Chasiotis, Kounias & Farmakis (2018), Browne et al. (arXiv:2104.06756, 2021), and Butbaia, Gukov et al. (arXiv:2608.22518, Oct 2026), with explicit witness matrices for 49/50 open orders.
 
 ## Machine-Readable Data & Verifier
 

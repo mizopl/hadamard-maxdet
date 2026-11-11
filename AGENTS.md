@@ -19,7 +19,7 @@ Welcome! This file provides a concise, machine-actionable orientation for autono
 Out of the 120 orders $1 \le n \le 120$:
 - **70 orders have `status == "PROVEN_OPTIMAL"` (CLOSED — cannot be improved):**
   - **61 orders** achieve $R(n) = |\det X| / B_{\text{class}}(n) = 1$ (`attains_residue_bound == true`), including all 30 multiples of 4, orders `1, 2, 3`, 6 Barba orders (`5, 13, 25, 41, 61, 113`), and 22 Ehlich–Wojtas orders.
-  - **9 orders (`7, 9, 11, 15, 17, 19, 21, 22, 37`)** have $R(n) < 1$ (`attains_residue_bound == false`) because the closed-form residue bound is unattainable over integers, **yet optimality is already proved** (e.g., `n = 19, 37` by Brent et al. 2011; `n = 22` by Brent 2021). Exceeding the catalog value on any `PROVEN_OPTIMAL` order indicates a bug in your determinant or entry check.
+  - **9 orders (`7, 9, 11, 15, 17, 19, 21, 22, 37`)** have $R(n) < 1$ (`attains_residue_bound == false`) because the closed-form residue bound is unattainable over integers, **yet optimality is already proved** (e.g., `n = 15` by Orrick 2005; `n = 19, 37` by Brent et al. 2011; `n = 22` by Chasiotis, Kounias & Farmakis 2018). Exceeding the catalog value on any `PROVEN_OPTIMAL` order indicates a bug in your determinant or entry check.
 - **50 orders have `status == "OPEN"` (LIVE TARGETS for constructive lower bounds or maximality proofs):**
   - **`n ≡ 1 (mod 4)` (19 open):** `29, 33, 45, 49, 53, 57, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101, 105, 109, 117`
   - **`n ≡ 2 (mod 4)` (6 open):** `34, 58, 70, 78, 94, 106`

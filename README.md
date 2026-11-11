@@ -1,6 +1,6 @@
 # Hadamard Maximal Determinant Catalog (1 <= n <= 120)
 
-Unified, offline-verifiable reference catalog of maximal determinants of $n \times n$ sign matrices $X \in \{-1, +1\}^{n \times n}$ across all orders $1 \le n \le 120$, consolidating historical constructions and optimality proofs from William P. Orrick's archived [`MaxDet` database](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/) (2002–2012), Tomas Rokicki's circulant-pair tables (2005), Hiroki Tamura's constructions (2005–2011), Richard P. Brent's optimality proof for $n = 22$ ([OEIS A003432](https://oeis.org/A003432), 2021), and the two-circulant reinforcement-learning records of Butbaia, Gukov et al. ([arXiv:2608.22518](https://arxiv.org/abs/2608.22518), [`Math-AI-Caltech/hadamard-maxdet`](https://github.com/Math-AI-Caltech/hadamard-maxdet), Oct 2026).
+Unified, offline-verifiable reference catalog of maximal determinants of $n \times n$ sign matrices $X \in \{-1, +1\}^{n \times n}$ across all orders $1 \le n \le 120$, consolidating historical constructions and optimality proofs from William P. Orrick's archived [`MaxDet` database](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/) (2002–2012), Tomas Rokicki's circulant-pair tables (2005), Hiroki Tamura's constructions (2005–2011), Chasiotis, Kounias, and Farmakis's optimality proof for $n = 22$ (*Discrete Math.*, 2018; [OEIS A003432](https://oeis.org/A003432)), Browne et al.'s survey ([arXiv:2104.06756](https://arxiv.org/abs/2104.06756), 2021), and the two-circulant reinforcement-learning records of Butbaia, Gukov et al. ([arXiv:2608.22518](https://arxiv.org/abs/2608.22518), [`Math-AI-Caltech/hadamard-maxdet`](https://github.com/Math-AI-Caltech/hadamard-maxdet), Oct 2026).
 
 <details>
 <summary><strong>Historical Background, Practical Significance &amp; Plain-Language Engineering Guide (<code>*</code> Legend)</strong></summary>
@@ -50,7 +50,7 @@ python3 verify.py --corrupt               # Adversarial 1-entry mutation self-te
 | :--- | ---: | ---: | ---: | :--- | :--- |
 | **0 mod 4**\* | 30 | 30 | 0 | Hadamard: $n^{n/2}$ | All 30 multiples of 4 achieve $R = 1$ (`*` dyadic Walsh $2^m$: 4, 8, 16, 32, 64) |
 | **1 mod 4** | 30 | 11 | 19 | Barba: $\sqrt{2n-1}\,(n-1)^{(n-1)/2}$ | 11 optimal (1, 5, 9, 13, 17, 21, 25, 37, 41, 61, 113); 19 open |
-| **2 mod 4** | 30 | 24 | 6 | Ehlich–Wojtas: $2(n-1)(n-2)^{(n-2)/2}$ | 24 optimal (2*, 22 [Brent 2021], 22 EW-tight); 6 open |
+| **2 mod 4** | 30 | 24 | 6 | Ehlich–Wojtas: $2(n-1)(n-2)^{(n-2)/2}$ | 24 optimal (2*, 22 [Chasiotis et al. 2018], 22 EW-tight); 6 open |
 | **3 mod 4** | 30 | 5 | 25 | Ehlich $s$-block Gram ($s \in \{3,5,6,7\}$) | 5 optimal (3, 7, 11, 15, 19); 25 open |
 
 ---
@@ -155,14 +155,14 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 12 | 0 | OPT | 1,458 | 1,458 | 1.0000 | Hadamard | 1893 | Had1893 | — |
 | 13 | 1 | OPT | 3,645 | 3,645 | 1.0000 | Raghavarao (Barba bound) | 1959 | Rag1959 | — |
 | 14 | 2 | OPT | 9,477 | 9,477 | 1.0000 | Ehlich (EW bound) | 1964 | Ehl1964a | — |
-| 15 | 3 | OPT | 25,515 | 25,515 | 0.9707 | Ehlich & Zeller; Cohn | 1962 | EZ1962 | — |
+| 15 | 3 | OPT | 25,515 | 25,515 | 0.9707 | Ehlich & Zeller; opt. Orrick | 2005 | Orr2005b | — |
 | 16* | 0 | OPT | 131,072 | 131,072 | 1.0000 | Sylvester (Hadamard) | 1867 | Syl1867 | — |
 | 17 | 1 | OPT | 327,680 | 327,680 | 0.8704 | Moyssiadis & Kounias | 1982 | MK1982 | — |
 | 18 | 2 | OPT | 1.1141 × 10<sup>6</sup> | 1,114,112 | 1.0000 | Ehlich (EW bound) | 1964 | Ehl1964a | — |
 | 19 | 3 | OPT | 3.4120 × 10<sup>6</sup> | 3,411,968 | 0.9750 | Cohn (1989); opt. Brent et al. | 2011 | BOOZ2011 | — |
 | 20 | 0 | OPT | 1.9531 × 10<sup>7</sup> | 19,531,250 | 1.0000 | Hadamard | 1893 | Had1893 | — |
 | 21 | 1 | OPT | 5.6641 × 10<sup>7</sup> | 56,640,625 | 0.9058 | Chadjipantelis, Kounias et al. | 1987 | CKM1987 | — |
-| 22 | 2 | OPT | 1.9531 × 10<sup>8</sup> | 195,312,500 | 0.9524 | Ehlich (1964); opt. Brent | 2021 | Bre2021 | — |
+| 22 | 2 | OPT | 1.9531 × 10<sup>8</sup> | 195,312,500 | 0.9524 | Chasiotis, Kounias & Farmakis | 2018 | CKF2018 | — |
 | 23 | 3 | OPEN | 6.6267 × 10<sup>8</sup> | 662,671,875 | 0.9320 | Dowdeswell, Neubauer et al. | 2004 | DNST2004 | [txt](matrices/literature_witnesses/n023.txt) |
 | 24 | 0 | OPT | 4.3536 × 10<sup>9</sup> | 12 · 6<sup>11</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 25 | 1 | OPT | 1.5237 × 10<sup>10</sup> | 42 · 6<sup>11</sup> | 1.0000 | Brouwer (Barba bound) | 1983 | Bro1983 | — |
@@ -214,7 +214,7 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 71 | 3 | OPEN | 2.5553 × 10<sup>44</sup> | 31,186,944 · 17<sup>30</sup> | 0.8804 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n071.txt) |
 | 72 | 0 | OPT | 3.0963 × 10<sup>45</sup> | 36 · 18<sup>35</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 73 | 1 | OPEN | 1.4965 × 10<sup>46</sup> | 174 · 18<sup>35</sup> | 0.8028 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n073.txt) |
-| 74 | 2 | OPT | 1.1301 × 10<sup>47</sup> | 1314 · 18<sup>35</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
+| 74 | 2 | OPT | 1.1301 × 10<sup>47</sup> | 1314 · 18<sup>35</sup> | 1.0000 | Cohn; Koukouvinos, Kounias & Seberry | 1989 | Coh1989 | — |
 | 75 | 3 | OPEN | 6.1512 × 10<sup>47</sup> | — | 0.8613 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n075.txt)* |
 | 76 | 0 | OPT | 7.8283 × 10<sup>48</sup> | 38 · 19<sup>37</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 77 | 1 | OPEN | 3.7699 × 10<sup>49</sup> | 183 · 19<sup>37</sup> | 0.7787 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n077.txt) |
@@ -222,7 +222,7 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 79 | 3 | OPEN | 1.6796 × 10<sup>51</sup> | — | 0.8591 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n079.txt) |
 | 80 | 0 | OPT | 2.1990 × 10<sup>52</sup> | 40 · 20<sup>39</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 81 | 1 | OPEN | 1.0775 × 10<sup>53</sup> | 196 · 20<sup>39</sup> | 0.7723 | N. Farmakis & S. Kounias | 1987 | FK1987 | [txt](matrices/literature_witnesses/n081.txt) |
-| 82 | 2 | OPT | 8.9060 × 10<sup>53</sup> | 1620 · 20<sup>39</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
+| 82 | 2 | OPT | 8.9060 × 10<sup>53</sup> | 1620 · 20<sup>39</sup> | 1.0000 | Cohn; Koukouvinos, Kounias & Seberry | 1989 | Coh1989 | — |
 | 83 | 3 | OPEN | 5.0710 × 10<sup>54</sup> | — | 0.8561 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n083.txt)* |
 | 84 | 0 | OPT | 6.8272 × 10<sup>55</sup> | 42 · 21<sup>41</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 85 | 1 | OPEN | 3.4902 × 10<sup>56</sup> | 4509 · 21<sup>40</sup> | 0.7865 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n085.txt) |
@@ -230,7 +230,7 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 87 | 3 | OPEN | 1.6851 × 10<sup>58</sup> | — | 0.8527 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n087.txt)* |
 | 88 | 0 | OPT | 2.3315 × 10<sup>59</sup> | 44 · 22<sup>43</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 89 | 1 | OPEN | 1.1657 × 10<sup>60</sup> | 220 · 22<sup>43</sup> | 0.7516 | N. Farmakis & S. Kounias | 1987 | FK1987 | — |
-| 90 | 2 | OPT | 1.0375 × 10<sup>61</sup> | 1958 · 22<sup>43</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
+| 90 | 2 | OPT | 1.0375 × 10<sup>61</sup> | 1958 · 22<sup>43</sup> | 1.0000 | Cohn; Koukouvinos, Kounias & Seberry | 1989 | Coh1989 | — |
 | 91 | 3 | OPEN | 6.1448 × 10<sup>61</sup> | — | 0.8501 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n091.txt) |
 | 92 | 0 | OPT | 8.7199 × 10<sup>62</sup> | 46 · 23<sup>45</sup> | 1.0000 | Baumert, Golomb & Hall | 1962 | BGH1962 | — |
 | 93 | 1 | OPEN | 4.5305 × 10<sup>63</sup> | 239 · 23<sup>45</sup> | 0.7640 | W. P. Orrick & B. Solomon | 2003 | OS2007 | [txt](matrices/literature_witnesses/n093.txt) |
@@ -238,11 +238,11 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 95 | 3 | OPEN | 2.4387 × 10<sup>65</sup> | — | 0.8447 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n095.txt)* |
 | 96 | 0 | OPT | 3.5577 × 10<sup>66</sup> | 48 · 24<sup>47</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 97 | 1 | OPEN | 1.8974 × 10<sup>67</sup> | 256 · 24<sup>47</sup> | 0.7678 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n097.txt) |
-| 98 | 2 | OPT | 1.7255 × 10<sup>68</sup> | 2328 · 24<sup>47</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
+| 98 | 2 | OPT | 1.7255 × 10<sup>68</sup> | 2328 · 24<sup>47</sup> | 1.0000 | Djokovic (EW bound) | 1997 | Djo1997 | — |
 | 99 | 3 | OPEN | 1.0657 × 10<sup>69</sup> | — | 0.8496 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n099.txt) |
 | 100 | 0 | OPT | 1.5777 × 10<sup>70</sup> | 50 · 25<sup>49</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 101 | 1 | OPEN | 8.9741 × 10<sup>70</sup> | 7110 · 25<sup>48</sup> | 0.8024 | W. P. Orrick & B. Solomon | 2003 | OS2007 | [txt](matrices/literature_witnesses/n101.txt) |
-| 102 | 2 | OPT | 7.9675 × 10<sup>71</sup> | 2525 · 25<sup>49</sup> | 1.0000 | Cohn (EW bound) | 1989 | Coh1989 | — |
+| 102 | 2 | OPT | 7.9675 × 10<sup>71</sup> | 2525 · 25<sup>49</sup> | 1.0000 | Cohn (EW bound) | 1992 | Coh1992 | — |
 | 103 | 3 | OPEN | 4.9829 × 10<sup>72</sup> | — | 0.8433 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n103.txt)* |
 | 104 | 0 | OPT | 7.5796 × 10<sup>73</sup> | 52 · 26<sup>51</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 105 | 1 | OPEN | 3.8474 × 10<sup>74</sup> | — | 0.7022 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n105.txt)* |
@@ -254,11 +254,11 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 111 | 3 | OPEN | 1.3978 × 10<sup>80</sup> | — | 0.8469 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n111.txt)* |
 | 112 | 0 | OPT | 2.1973 × 10<sup>81</sup> | 56 · 28<sup>55</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 | 113 | 1 | OPT | 1.6479 × 10<sup>82</sup> | 420 · 28<sup>55</sup> | 1.0000 | Brouwer (Barba bound) | 1983 | Bro1983 | — |
-| 114 | 2 | OPT | 1.2414 × 10<sup>83</sup> | 3164 · 28<sup>55</sup> | 1.0000 | Koukouvinos, Kounias & Seberry | 1989 | KKS1989 | — |
+| 114 | 2 | OPT | 1.2414 × 10<sup>83</sup> | 3164 · 28<sup>55</sup> | 1.0000 | Koukouvinos, Kounias & Seberry | 1991 | KKS1991 | — |
 | 115 | 3 | OPEN | 8.2608 × 10<sup>83</sup> | — | 0.8488 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n115.txt)* |
 | 116 | 0 | OPT | 1.3186 × 10<sup>85</sup> | 58 · 29<sup>57</sup> | 1.0000 | Baumert | 1966 | Bau1966 | — |
 | 117 | 1 | OPEN | 7.2315 × 10<sup>85</sup> | — | 0.7186 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n117.txt)* |
-| 118 | 2 | OPT | 7.7138 × 10<sup>86</sup> | 3393 · 29<sup>57</sup> | 1.0000 | Fletcher, Koukouvinos & Seberry | 2002 | FKS2002 | — |
+| 118 | 2 | OPT | 7.7138 × 10<sup>86</sup> | 3393 · 29<sup>57</sup> | 1.0000 | Fletcher, Koukouvinos & Seberry | 2004 | FKS2004 | — |
 | 119 | 3 | OPEN | 5.2308 × 10<sup>87</sup> | — | 0.8503 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n119.txt)* |
 | 120 | 0 | OPT | 8.4782 × 10<sup>88</sup> | 60 · 30<sup>59</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
 </details>
@@ -302,7 +302,7 @@ python3 verify.py --check path/to/candidate_matrix.json --sympy # Dual Bareiss +
 [`catalog/hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv) and [`catalog/hadamard_maxdet_n1_to_120.json`](catalog/hadamard_maxdet_n1_to_120.json) distinguish between **optimality** (`status`) and **bound tightness** (`attains_residue_bound`):
 
 - **`status = PROVEN_OPTIMAL` + `attains_residue_bound = True` (61 orders):** A sign matrix achieves $100\%$ of its residue-class upper bound ($R = 1$), immediately certifying optimality (all 30 Hadamard orders $n \equiv 0 \pmod 4$, $n \in \{1, 2, 3\}$, 6 Barba orders $5, 13, 25, 41, 61, 113$, and 22 Ehlich–Wojtas orders).
-- **`status = PROVEN_OPTIMAL` + `attains_residue_bound = False` (9 orders: `7, 9, 11, 15, 17, 19, 21, 22, 37`):** The closed-form residue-class formula is arithmetically unattainable over $\{-1, +1\}$ ($R < 1$), yet an exhaustive computer-assisted or algebraic proof establishes that no larger determinant exists for that $n$ (e.g., [Brent et al. 2011](https://arxiv.org/abs/1112.4160) for $n = 19, 37$; [Brent 2021](https://oeis.org/A003432) for $n = 22$).
+- **`status = PROVEN_OPTIMAL` + `attains_residue_bound = False` (9 orders: `7, 9, 11, 15, 17, 19, 21, 22, 37`):** The closed-form residue-class formula is arithmetically unattainable over $\{-1, +1\}$ ($R < 1$), yet an exhaustive computer-assisted or algebraic proof establishes that no larger determinant exists for that $n$ (e.g., [Orrick 2005](https://arxiv.org/abs/math/0401179) for $n = 15$; [Brent et al. 2011](https://arxiv.org/abs/1112.4160) for $n = 19, 37$; Chasiotis, Kounias & Farmakis 2018 for $n = 22$).
 - **`status = OPEN` + `attains_residue_bound = False` (50 orders, `23 <= n <= 119`):** No optimality proof is published and $R < 1$; `D_norm_exact` records the best verified constructive lower bound.
 </details>
 
@@ -321,7 +321,7 @@ python3 verify.py --check path/to/candidate_matrix.json --sympy # Dual Bareiss +
 - **[`teorth/optimizationproblems`](https://github.com/teorth/optimizationproblems):** Terence Tao's curated catalog of open extremal and combinatorial optimization benchmarks.
 
 ### Expository Overviews & Constructive Hadamard Libraries
-- **Mathematical Surveys:** [Wikipedia — *Hadamard's maximal determinant problem*](https://en.wikipedia.org/wiki/Hadamard%27s_maximal_determinant_problem) · [Wolfram MathWorld — *Hadamard's Maximum Determinant Problem*](https://mathworld.wolfram.com/HadamardsMaximumDeterminantProblem.html) · [R. P. Brent's Maximal Determinant Papers](https://maths-people.anu.edu.au/~brent/pub/pubsall.html).
+- **Mathematical Surveys:** P. Browne, R. Egan, F. Hegarty, and P. Ó Catháin, [*A survey of the Hadamard maximal determinant problem*](https://arxiv.org/abs/2104.06756) (*Electron. J. Combin.* 28(4), P4.41, 2021) · [Wikipedia — *Hadamard's maximal determinant problem*](https://en.wikipedia.org/wiki/Hadamard%27s_maximal_determinant_problem) · [Wolfram MathWorld — *Hadamard's Maximum Determinant Problem*](https://mathworld.wolfram.com/HadamardsMaximumDeterminantProblem.html) · [R. P. Brent's Maximal Determinant Papers](https://maths-people.anu.edu.au/~brent/pub/pubsall.html).
 - **Constructive Matrix Libraries (Order $4k$ Seeds):** [N. J. A. Sloane's Library of Hadamard Matrices](http://neilsloane.com/hadamard/) · [SageMath Combinatorial Designs (`hadamard_matrix`)](https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/matrices/hadamard_matrix.html).
 - **Agent, Maintainer & LLM Guides:** [`AGENTS.md`](AGENTS.md) (autonomous agent primer & verification rules) · [`CONTRIBUTING.md`](CONTRIBUTING.md) (PR, template-reuse & co-maintainer guide) · [`llms.txt`](llms.txt) ([`llmstxt.org`](https://llmstxt.org/) index) · [`CITATION.cff`](CITATION.cff).
 
@@ -347,26 +347,30 @@ Corrections, missing historical references, verified new matrices (`python3 veri
 - **[Yan1968]** C. H. Yang (1966-1969), Some designs for maximal (+1,-1)-determinant of order n = 2 mod 4, Math. Comp. 20/22/23.
 - **[BHH1981]** W. G. Bridges, M. Hall Jr., and M. L. Hayden (1981), Codes and designs, J. Combin. Theory Ser. A 31, 155-174; T. van Trung (1982).
 - **[MK1982]** C. Moyssiadis and S. Kounias (1982), The exact D-optimal first order saturated design with 17 observations, J. Statist. Plann. Inference 7, 13-27.
-- **[Bro1983]** A. E. Brouwer (1983), An infinite series of symmetric designs, Math. Centrum Amsterdam Report ZW 202/83.
+- **[Bro1983]** A. E. Brouwer (1983), An infinite series of symmetric designs, Math. Centrum Amsterdam Report ZW 202/83; independently A. L. Whiteman (1990), Ars Combin. 30, 23-26.
 - **[CK1985]** T. Chadjipantelis and S. Kounias (1985), Supplementary difference sets and D-optimal designs for n = 2 mod 4, Discrete Math. 57, 211-216.
 - **[CKM1987]** T. Chadjipantelis, S. Kounias, and C. Moyssiadis (1987), The maximum determinant of 21x21 (+1,-1)-matrices and D-optimal designs, J. Statist. Plann. Inference 16, 167-178.
 - **[FK1987]** N. Farmakis and S. Kounias (1987), The excess of Hadamard matrices and optimal designs, Discrete Math. 67, 165-176.
-- **[Coh1989]** J. H. E. Cohn (1989), On determinants with elements +-1, II, Bull. London Math. Soc. 21, 36-42.
-- **[KKS1989]** C. Koukouvinos, S. Kounias, and J. Seberry (1989), Further Hadamard matrices with maximal excess and new D-optimal designs for n = 2 mod 4, Utilitas Math. 36, 135-150.
+- **[Coh1989]** J. H. E. Cohn (1989), On determinants with elements +-1, II, Bull. London Math. Soc. 21, 36-42; C. Koukouvinos, S. Kounias, and J. Seberry (1989), Utilitas Math. 36, 135-150.
+- **[KKS1991]** C. Koukouvinos, S. Kounias, and J. Seberry (1991), Supplementary difference sets and optimal designs, Discrete Math. 88, 49-58.
+- **[Coh1992]** J. H. E. Cohn (1992), A D-optimal design of order 102, Discrete Math. 102, 61-65.
+- **[Djo1997]** D. Z. Djokovic (1997), Some new D-optimal designs, Australas. J. Combin. 15, 221-231.
 - **[FS2001]** R. J. Fletcher and J. Seberry (2001), New D-optimal designs of order 110, Australas. J. Combin. 23, 49-52.
-- **[FKS2002]** R. J. Fletcher, C. Koukouvinos, and J. Seberry (2002), New skew-Hadamard matrices of order 4*59 and D-optimal designs of order 2*59, Discrete Math. 286 (2004), 251-253.
+- **[FKS2004]** R. J. Fletcher, C. Koukouvinos, and J. Seberry (2004), New skew-Hadamard matrices of order 4*59 and new D-optimal designs of order 2*59, Discrete Math. 286, 251-253.
 - **[Sol2002]** B. Solomon (2002), Large-determinant sign matrices of orders 29 and 33, reported in W. P. Orrick's [MaxDet catalog](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/).
 - **[OSDS2003]** W. P. Orrick, B. Solomon, R. Dowdeswell, and W. D. Smith (2003), New lower bounds for the maximal determinant problem, [arXiv:math/0304410](https://arxiv.org/abs/math/0304410).
 - **[OS2007]** W. P. Orrick and B. Solomon (2003; publ. 2007), Large-determinant sign matrices of order 4k+1, Discrete Math. 307, 226-236 ([arXiv:math/0311292](https://arxiv.org/abs/math/0311292)).
 - **[DNST2004]** A. Dowdeswell, M. G. Neubauer, B. Solomon, and K. Tumer (2004), Lower bound for order 23 in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
 - **[Orr2005]** W. P. Orrick (2005), Switching operations for Hadamard matrices and D-optimal designs of orders 34, 70, 106, SIAM J. Discrete Math. 22 (2008), 31-50 ([arXiv:math/0507515](https://arxiv.org/abs/math/0507515)).
+- **[Orr2005b]** W. P. Orrick (2005), The maximal {-1, 1}-determinant of order 15, Metrika 62, 195-219 ([arXiv:math/0401179](https://arxiv.org/abs/math/0401179)).
 - **[Rok2005]** T. Rokicki (Apr 2005), New determinant records from circulant pairs (orders 51-119), archived in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
 - **[Mey2005]** J.-C. Meyrignac and B. Felgenhauer (Apr 2005), Order 57 sign matrix record, archived in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
 - **[Tam2005]** H. Tamura (Aug 2005), Maximal determinant records for orders 27, 31, and 59, archived in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
 - **[BOOZ2011]** R. P. Brent, W. P. Orrick, J.-a. H. Osborn, and P. Zimmermann (2009-2011), Maximal determinants and saturated D-optimal designs of orders 19 and 37 (and order 45 construction), [arXiv:1112.4160](https://arxiv.org/abs/1112.4160).
 - **[Tam2011]** H. Tamura (Jan 2011), Maximal determinant records for orders 35, 39, 43, and 63, archived in W. P. Orrick's [MaxDet catalog](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml).
-- **[DK2015]** D. Z. Djokovic and I. S. Kotsireas (2015), D-optimal matrices of orders 118, 138, 150, 154 and 174, Algebraic Design Theory and Hadamard Matrices, Springer, 61-72 ([arXiv:1501.07640](https://arxiv.org/abs/1501.07640)).
-- **[Bre2021]** R. P. Brent (2021), Optimality confirmation for binary order 21 (sign order 22, a(21) = 195312500), [OEIS A003432](https://oeis.org/A003432).
+- **[DK2015]** D. Z. Djokovic and I. S. Kotsireas (2012-2015), New results on D-optimal matrices, J. Combin. Des. 20, 278-289 ([arXiv:1103.3626](https://arxiv.org/abs/1103.3626)); Algebraic Design Theory and Hadamard Matrices, Springer, 61-72 ([arXiv:1501.07640](https://arxiv.org/abs/1501.07640)).
+- **[CKF2018]** V. Chasiotis, S. Kounias, and N. Farmakis (2018), The D-optimal saturated designs of order 22, Discrete Math. 341, 380-387; Corrigendum ibid. 342 (2019), 2161 (recorded in [OEIS A003432](https://oeis.org/A003432) by R. P. Brent, 2021).
+- **[BEHO2021]** P. Browne, R. Egan, F. Hegarty, and P. O Cathain (2021), A survey of the Hadamard maximal determinant problem, Electron. J. Combin. 28(4), P4.41 ([arXiv:2104.06756](https://arxiv.org/abs/2104.06756)).
 - **[BG2026]** G. Butbaia, J. Tan, P. Vipulanandan, X. Huang, T. Saunders-A'Court, L. Fagan, D. Passaro, M. Tarquini, and S. Gukov (Oct 2026), Reinforcement learning for the Hadamard maximal determinant problem, [arXiv:2608.22518](https://arxiv.org/abs/2608.22518) · [Zenodo 22024187](https://zenodo.org/records/22024187) · [Math-AI-Caltech/hadamard-maxdet](https://github.com/Math-AI-Caltech/hadamard-maxdet).
 </details>
 
