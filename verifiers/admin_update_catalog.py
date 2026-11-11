@@ -202,6 +202,7 @@ def collect_tracked_files(repo_root: Path) -> List[Path]:
     for cname in (
         "hadamard_maxdet_n1_to_120.json",
         "hadamard_maxdet_n1_to_120.csv",
+        "references.bib",
         "new_records.json",
         "tied_constructions.json",
     ):

@@ -1,11 +1,13 @@
 # Hadamard Maximal Determinant Catalog (1 <= n <= 120)
 
-> Unified, offline-verifiable reference catalog and exact-integer Bareiss verification suite for maximal determinants of n x n {+1, -1} sign matrices across all orders 1 <= n <= 120 (OEIS A003432 / A003433), consolidating W. P. Orrick's archived MaxDet database (2002-2012), T. Rokicki (2005), H. Tamura (2005-2011), Chasiotis, Kounias & Farmakis (2018), Browne et al. (arXiv:2104.06756, 2021), and Butbaia, Gukov et al. (arXiv:2608.22518, Oct 2026), with explicit witness matrices for 49/50 open orders.
+> Unified, offline-verifiable reference catalog and exact-integer Bareiss verification suite for maximal determinants of n x n {+1, -1} sign matrices across all orders 1 <= n <= 120 (OEIS A003432 / A003433), consolidating W. P. Orrick's archived MaxDet database (2002-2012), T. Rokicki (2005), H. Tamura (2005-2011), Chasiotis, Kounias & Farmakis (2018), Browne et al. (arXiv:2104.06756, 2021), and Butbaia, Gukov et al. (arXiv:2608.22518, Oct 2026), with explicit witness matrices for 50/50 open orders.
 
 ## Machine-Readable Data & Verifier
 
 - [Catalog JSON (1 <= n <= 120)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/catalog/hadamard_maxdet_n1_to_120.json): Complete 120-order dataset with exact unrounded integers (`D_norm_exact`, `det_exact`), residue-class bound ratios, optimality status (`PROVEN_OPTIMAL` vs `OPEN`), and primary-source attributions.
 - [Catalog CSV (1 <= n <= 120)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/catalog/hadamard_maxdet_n1_to_120.csv): Flat CSV table of all 120 orders.
+- [BibTeX Bibliography (`catalog/references.bib`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/catalog/references.bib): Standard BibTeX entries (`Syl1867` through `WE2026` plus 2022-2026 related literature).
+- [New Constructive Records JSON (`v2.0`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/catalog/new_records.json): Exact certificates, generator methods, and `+/-` matrices for 8 improved orders.
 - [Master Verifier (`verify.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verify.py): Orchestrates full Bareiss determinant, residue-bound, GF(2) block-circulant (`*`), and SHA-256 verification (`python3 verify.py --check FILE` for external candidates).
 - [GF(2) Block-Circulant Verifier (`verifiers/circulant_structure.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verifiers/circulant_structure.py): Certifies sign-gauge circulant/back-circulant block cores (`*` engineering flag).
 - [Determinant & Bounds Engine (`verifiers/determinant_and_bounds.py`)](https://raw.githubusercontent.com/mizopl/hadamard-maxdet/main/verifiers/determinant_and_bounds.py): Exact integer Bareiss elimination and rational Hadamard/Barba/Ehlich-Wojtas/Ehlich(s) bounds.

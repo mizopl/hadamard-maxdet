@@ -8,7 +8,8 @@ Welcome! This file provides a concise, machine-actionable orientation for autono
 
 - `catalog/hadamard_maxdet_n1_to_120.json` — authoritative 120-order catalog (`D_norm_exact`, `det_exact`, `status`, `attains_residue_bound`, `bound_name`, `ratio_to_bound`, `current_holder`, `year`, `ref_key`, `matrix_file`).
 - `catalog/hadamard_maxdet_n1_to_120.csv` — flat 120-row CSV mirror of the JSON catalog.
-- `matrices/` — explicit $n \times n$ sign matrices (`+` for $+1$, `-` for $-1$) for **49 / 50** open orders.
+- `catalog/new_records.json` — machine-readable certificates and `matrices/we_star_2026/nXXX.txt` witnesses for the Nov 2026 constructive records.
+- `matrices/` — explicit $n \times n$ sign matrices (`+` for $+1$, `-` for $-1$) for **50 / 50** open orders.
 - `verify.py` & `verifiers/` — zero-dependency exact verification suite (`determinant_and_bounds.py` Bareiss + rational bounds, `circulant_structure.py` exact $\mathbb{F}_2$ block-circulant classifier, `candidate_audit.py` external candidate & Gram-equivalence auditor, `admin_update_catalog.py` maintainer ingestion CLI).
 - `CONTRIBUTING.md` — contributor, template-reuse, and co-maintainer workflow.
 

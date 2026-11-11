@@ -1,6 +1,6 @@
-# Hadamard Maximal Determinant Catalog (1 <= n <= 120)
+# Hadamard Maximal Determinant Catalog & New Constructive Records (1 <= n <= 120)
 
-Unified, offline-verifiable reference catalog of maximal determinants of $n \times n$ sign matrices $X \in \{-1, +1\}^{n \times n}$ across all orders $1 \le n \le 120$, consolidating historical constructions and optimality proofs from William P. Orrick's archived [`MaxDet` database](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/) (2002–2012), Tomas Rokicki's circulant-pair tables (2005), Hiroki Tamura's constructions (2005–2011), Chasiotis, Kounias, and Farmakis's optimality proof for $n = 22$ (*Discrete Math.*, 2018; [OEIS A003432](https://oeis.org/A003432)), Browne et al.'s survey ([arXiv:2104.06756](https://arxiv.org/abs/2104.06756), 2021), and the two-circulant reinforcement-learning records of Butbaia, Gukov et al. ([arXiv:2608.22518](https://arxiv.org/abs/2608.22518), [`Math-AI-Caltech/hadamard-maxdet`](https://github.com/Math-AI-Caltech/hadamard-maxdet), Oct 2026).
+Unified, offline-verifiable catalog of maximal determinants of $n \times n$ sign matrices $X \in \{-1, +1\}^{n \times n}$ across all orders $1 \le n \le 120$, combining historical records from William P. Orrick's archived [`MaxDet` database](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/) (2002–2012), Tomas Rokicki's circulant constructions (2005), Hiroki Tamura's constructions (2005–2011), Chasiotis, Kounias, and Farmakis's optimality proof for $n = 22$ (*Discrete Math.*, 2018; [OEIS A003432](https://oeis.org/A003432)), Browne et al.'s survey ([arXiv:2104.06756](https://arxiv.org/abs/2104.06756), 2021), the two-circulant reinforcement-learning records of Butbaia, Gukov et al. ([arXiv:2608.22518](https://arxiv.org/abs/2608.22518), [`Math-AI-Caltech/hadamard-maxdet`](https://github.com/Math-AI-Caltech/hadamard-maxdet), Oct 2026), and **8 new constructive records** ($n = 81, 89, 93, 97, 101, 105, 109, 117$) established by **we\*** (`@mizopl`, Nov 2026).
 
 <details>
 <summary><strong>Historical Background, Practical Significance &amp; Plain-Language Engineering Guide (<code>*</code> Legend)</strong></summary>
@@ -30,36 +30,129 @@ Every $n \times n$ sign matrix $X \in \{-1, +1\}^{n \times n}$ has $|\det X|$ di
 
 $$D_{\text{norm}}(n) = \frac{|\det X|}{2^{n-1}} \in \mathbb{Z}_{>0}, \qquad R(n) = \frac{|\det X|}{B_{\text{class}}(n)} \le 1,$$
 
-which equals the maximal determinant of an $(n-1) \times (n-1)$ binary $\{0, 1\}$ matrix ([OEIS A003433](https://oeis.org/A003433) tracks raw $|\det X| = 2^{n-1} D_{\text{norm}}(n)$). Explicit `{-1, +1}` witness matrices are included in [`matrices/literature_witnesses/`](matrices/literature_witnesses/) for **49 / 50** open orders (`n = 89` had no explicit matrix archived in `MaxDet`).
+which equals the maximal determinant of an $(n-1) \times (n-1)$ binary $\{0, 1\}$ matrix ([OEIS A003433](https://oeis.org/A003433) tracks raw $|\det X| = 2^{n-1} D_{\text{norm}}(n)$). With our explicit $89 \times 89$ construction (`n = 89` previously lacked an archived matrix), **all 50 open orders (23 <= n <= 119) now have explicit, machine-verified `{-1, +1}` witness matrices** in [`matrices/`](matrices/).
 
 ```bash
-python3 verify.py                         # Verifies all 49 open witnesses, 120 bounds, CSV/JSON parity & SHA256SUMS
+python3 verify.py --sympy                 # Verifies all 8 new we* records (Bareiss + SymPy), all 50 open witnesses & SHA256SUMS
 python3 verify.py --check my_matrix.txt   # Evaluates any external +/-1 or 0/1 candidate matrix against catalog records
 python3 verify.py --corrupt               # Adversarial 1-entry mutation self-test (must print FAIL and exit 1)
 ```
 
-- **Machine-Readable Tables (full unrounded integers):** [`catalog/hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv) · [`catalog/hadamard_maxdet_n1_to_120.json`](catalog/hadamard_maxdet_n1_to_120.json)
-- **For AI Agents & Crawlers:** [`AGENTS.md`](AGENTS.md) · [`llms.txt`](llms.txt)
+- **Upstream V3R1T4S Verification Package:** [`elder-plinius/V3R1T4S` PR #1053](https://github.com/elder-plinius/V3R1T4S/pull/1053)
 - **Companion Open-Science Repository:** <https://github.com/mizopl/we-star>
+- **Machine-Readable Tables (full unrounded integers & BibTeX):** [`catalog/hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv) · [`catalog/hadamard_maxdet_n1_to_120.json`](catalog/hadamard_maxdet_n1_to_120.json) · [`catalog/new_records.json`](catalog/new_records.json) · [`catalog/references.bib`](catalog/references.bib)
+- **For AI Agents & Crawlers:** [`AGENTS.md`](AGENTS.md) · [`llms.txt`](llms.txt)
 
 ---
 
-## 1. Residue-Class Summary (1 <= n <= 120)
+## 1. New Constructive Records (`we*`, Nov 2026 — 8 Orders Improved)
 
-| Residue Class | Orders | Optimal | Open | Upper Bound $B_{\text{class}}(n)$ | Status Summary |
-| :--- | ---: | ---: | ---: | :--- | :--- |
-| **0 mod 4**\* | 30 | 30 | 0 | Hadamard: $n^{n/2}$ | All 30 multiples of 4 achieve $R = 1$ (`*` dyadic Walsh $2^m$: 4, 8, 16, 32, 64) |
-| **1 mod 4** | 30 | 11 | 19 | Barba: $\sqrt{2n-1}\,(n-1)^{(n-1)/2}$ | 11 optimal (1, 5, 9, 13, 17, 21, 25, 37, 41, 61, 113); 19 open |
-| **2 mod 4** | 30 | 24 | 6 | Ehlich–Wojtas: $2(n-1)(n-2)^{(n-2)/2}$ | 24 optimal (2*, 22 [Chasiotis et al. 2018], 22 EW-tight); 6 open |
-| **3 mod 4** | 30 | 5 | 25 | Ehlich $s$-block Gram ($s \in \{3,5,6,7\}$) | 5 optimal (3, 7, 11, 15, 19); 25 open |
+| n | mod 4 | Previous D<sub>norm</sub> | New D<sub>norm</sub> (`we*` 2026) | Gain | R<sub>prev</sub> → R<sub>new</sub> | Previous Holder | Witness |
+| ---: | :---: | :--- | :--- | ---: | :---: | :--- | :---: |
+| **81** | 1 | 196 · 20<sup>39</sup> | **200 · 20<sup>39</sup>** | **+2.04%** | 0.7723 → **0.7881** | N. Farmakis & S. Kounias (1987) | [n081.txt](matrices/we_star_2026/n081.txt) |
+| **89** | 1 | 220 · 22<sup>43</sup> | **226 · 22<sup>43</sup>** | **+2.73%** | 0.7516 → **0.7721** | N. Farmakis & S. Kounias (1987)† | [n089.txt](matrices/we_star_2026/n089.txt) |
+| **93** | 1 | 239 · 23<sup>45</sup> | **243 · 23<sup>45</sup>** | **+1.67%** | 0.7640 → **0.7768** | W. P. Orrick & B. Solomon (2003) | [n093.txt](matrices/we_star_2026/n093.txt) |
+| **97** | 1 | 256 · 24<sup>47</sup> | **264 · 24<sup>47</sup>** | **+3.12%** | 0.7678 → **0.7918** | B. Solomon & W. P. Orrick (2003) | [n097.txt](matrices/we_star_2026/n097.txt) |
+| **101** | 1 | 7110 · 25<sup>48</sup> | **7626 · 25<sup>48</sup>** | **+7.26%** | 0.8024 → **0.8606** | W. P. Orrick & B. Solomon (2003) | [n101.txt](matrices/we_star_2026/n101.txt) |
+| **105** | 1 | 3.8474 × 10<sup>74</sup> | **7413 · 26<sup>50</sup>** | **+8.02%** | 0.7022 → **0.7585** | T. Rokicki (2005) | [n105.txt](matrices/we_star_2026/n105.txt) |
+| **109** | 1 | 1.8775 × 10<sup>78</sup> | **309 · 27<sup>53</sup>** | **+19.86%** | 0.6482 → **0.7769** | T. Rokicki (2005) | [n109.txt](matrices/we_star_2026/n109.txt) |
+| **117** | 1 | 7.2315 × 10<sup>85</sup> | **335 · 29<sup>57</sup>** | **+5.32%** | 0.7186 → **0.7568** | T. Rokicki (2005) | [n117.txt](matrices/we_star_2026/n117.txt) |
+
+<sub>† On <b>n = 89</b>, the value 220 · 22<sup>43</sup> was derived by Farmakis & Kounias (1987) from an order-88 max-excess Hadamard construction without an archived explicit 89 × 89 matrix in <code>MaxDet</code>; <code>matrices/we_star_2026/n089.txt</code> provides an explicit {-1, +1} witness achieving 226 · 22<sup>43</sup>.</sub>
+
+<details>
+<summary><strong>Construction methods & exact unrounded integers for the 8 new records</strong></summary>
+
+#### Algebraic construction summary
+- **n = 81** (+2.0408%, R: 0.772348 → 0.788110): Closed-Four Hadamard switching on H_80 + [OS-1] triplet border (`Switch_Hcat_s18_L1=640_trip=(40, 56, 59)`). Formula: `Closed-Four Hadamard switching walk on catalog Hadamard core H_80 -> inequivalent H_80 + [OS-1] high-excess 3-row border + 2-column Schur-4 zero-excess alignment`.
+- **n = 89** (+2.7273%, R: 0.751646 → 0.772145): Closed-Four switching on Kronecker core H_44 x H_2 + [OS-1] border (`Switch_Kron_44x2_s13_L1=728_n0=12_trip=(42, 53, 58)`). Formula: `Closed-Four Hadamard switching walk on Kronecker Paley-43 x H_2 -> inequivalent H_88 + [OS-1] high-excess 3-row border + 2-column Schur-4 zero-excess alignment`.
+- **n = 93** (+1.6736%, R: 0.763984 → 0.776770): Asymmetric Goethals-Seidel core (A^T != A) + [OS-1] R-chirality border (`OS1_M11_AsymGS_23_9_3_1_1_q5_d-1_L1=788_n0=3`). Formula: `Asymmetric Goethals-Seidel Hadamard core H_92 (4x23 circulant blocks, row sums [9, 3, 1, -1]) + [OS-1] 3-row excess border on triplet (65, 85, 91)`.
+- **n = 97** (+3.1250%, R: 0.767803 → 0.791797): Asymmetric Goethals-Seidel core (A^T != A) + [OS-1] R-chirality border (`OS1_M11_AsymGS_24_8_4_4_0_q261_d+1_L1=864_n0=6`). Formula: `Asymmetric Goethals-Seidel Hadamard core H_96 (4x24 circulant blocks, row sums [8, 4, 4, 0]) + [OS-1] 3-row excess border on triplet (3, 11, 19) + Schur-4 border polish (3 border flips)`.
+- **n = 101** (+7.2574%, R: 0.802401 → 0.860635): Coupled two-sided border flip on doubly 3-normalized [OS-2] Goethals-Seidel core (`SMv2_Orrick_n101_s0`). Formula: `Doubly 3-normalized [OS-2] Hadamard core H_100 + coupled rank-2 border/core unfreezing (6 sign flips from [OS2007] breaking the frozen core orthogonality barrier)`.
+- **n = 105** (+8.0164%, R: 0.702238 → 0.758532): Asymmetric Goethals-Seidel core (A^T != A) + [OS-1] R-chirality border (`WarmSM_OS1_M14_AsymGS_26_8_6_2_0_q0_sl0_t100_d+1_L1=920_n0=16_r1`). Formula: `Asymmetric Goethals-Seidel Hadamard core H_104 (4x26 circulant blocks, row sums [-6, -4, 4, 6]) + [OS-1] 3-row excess border on triplet (12, 57, 98) + rank-1 Sherman-Morrison unfreezing (11 cell flips)`.
+- **n = 109** (+19.8565%, R: 0.648191 → 0.776900): Asymmetric Goethals-Seidel core (A^T != A) + [OS-1] R-chirality border (`OS1_M11_AsymGS_27_9_3_3_3_q49_d+1_L1=1020_n0=3`). Formula: `Asymmetric Goethals-Seidel Hadamard core H_108 (4x27 circulant blocks, row sums [9, 3, 3, 3]) + [OS-1] 3-row excess border on triplet (83, 92, 101)`.
+- **n = 117** (+5.3179%, R: 0.718566 → 0.756779): Asymmetric Goethals-Seidel core (A^T != A) + [OS-1] R-chirality border (`OS1_M14_AsymGS_29_7_7_3_3_q8_sl0_t100_d-1_L1=1108_n0=3`). Formula: `Asymmetric Goethals-Seidel Hadamard core H_116 (4x29 circulant blocks, row sums [-7, -7, -3, 3]) + [OS-1] 3-row excess border on triplet (6, 66, 98)`.
+
+#### Exact integer `D_norm = |det X| / 2^(n-1)` values
+```text
+n =  81 | D_norm_prev = 107752139522048000000000000000000000000000000000000000
+        | D_norm_new  = 109951162777600000000000000000000000000000000000000000
+n =  89 | D_norm_prev = 1165729954414365496202893614947911393918604879059221018050560
+        | D_norm_new  = 1197522589534757282462972531719218068298203193942654318542848
+n =  93 | D_norm_prev = 4530545764797772467125412055473257402652070190439124366323586777
+        | D_norm_new  = 4606370798518237278290690918326366313156707348438105527266240949
+n =  97 | D_norm_prev = 18974411972804596157953446332065856959415742925610486623450687340544
+        | D_norm_new  = 19567362346954739787889491529942914989397484892035814330433521319936
+n = 101 | D_norm_prev = 89740816577942302983638241586569761487623964058002457022666931152343750
+        | D_norm_new  = 96253652211446976449117472621544444599805956386262550950050354003906250
+n = 105 | D_norm_prev = 384743747284587846942188483608583600735563257274079045682562818122226665625
+        | D_norm_new  = 415586468672646649836878426545094933992421758510370836431909484174705164288
+n = 109 | D_norm_prev = 1877483841834222713683125485573890072927341503771574105042244268774869908324352
+        | D_norm_new  = 2250287355442438900295757619807994219684406160806013443723720866712282032585703
+n = 117 | D_norm_prev = 72314994254613394470813334860641212637154205430658679584420251275641935854599391452615
+        | D_norm_new  = 76160657954499973539057578092053129947262150826797050046488183822315692905877125578515
+```
+</details>
+
+<details>
+<summary><strong>Subsection 1B — Hadamard-Inequivalent Matrices Attaining Existing Open Records (19 non-isomorphic classes, incl. n = 51)</strong></summary>
+
+<sub>These constructions attain the exact best-known determinant $D_{\text{norm}} = D_{\text{rec}}$ (and are therefore <b>not</b> counted among the 8 strict determinant improvements above), while establishing provably distinct Hadamard equivalence classes under signed row/column permutations and matrix transposition ($P_1 Y P_2$ and $P_1 Y^T P_2$). Full certificates in <a href="catalog/tied_constructions.json"><code>catalog/tied_constructions.json</code></a>.</sub>
+
+| n | Tied Record Holder | D<sub>norm</sub> | Witness | Invariant Proof (vs Y &amp; Y<sup>T</sup>) | Constructive Formula |
+| ---: | :--- | ---: | :---: | :--- | :--- |
+| **29** | B. Solomon (2002) | 320 · 7<sup>12</sup> | [tied_n029.txt](matrices/we_star_2026/tied_n029.txt) | `4-profile mod T (5efebc67 != d96603a3)` | Algebraic PaleyII_13 Hadamard core H_28 + doubly 3-normalized [OS-2] border on R=(0, 2, 4... |
+| **34** | W. P. Orrick (2005) | 256 · 8<sup>15</sup> | [tied_n034.txt](matrices/we_star_2026/tied_n034.txt) | `4-profile mod T (e1454ea9 != 84bae9ac)` | Constructed 2-bordered 2-circulant ([[H_2, J, K], [J^T, A, B], [K^T, B^T, -A^T]]) (block ... |
+| **49** | B. Solomon & W. P. Orrick (2003) | 96 · 12<sup>23</sup> | [tied_n049.txt](matrices/we_star_2026/tied_n049.txt) | `2-point Gram (cbdf9764 != b2180b74)` | Switched/algebraic DisjointClosedFour_Hcat_s0 Hadamard core H_48 + [OS-1] border on tripl... |
+| **51** | Butbaia, Gukov et al. (2026) | 1.7776 × 10<sup>28</sup> | [tied_n051.txt](matrices/we_star_2026/tied_n051.txt) | `4-profile mod T (7fa6a09f != f63cd8da)` | Cold-constructed 1-bordered symmetric-skew 2-circulant Type 2 ([[A, B, -j], [B, A^T, j], ... |
+| **53** | Orrick, Solomon et al. (2003) | 105 · 13<sup>25</sup> | [tied_n053.txt](matrices/we_star_2026/tied_n053.txt) | `2-point Gram (39dc1c4e != 9fa9751b)` | Cold-constructed Asymmetric Goethals-Seidel Hadamard core H_52 (4x13 blocks) + [OS-1] bor... |
+| **55** | T. Rokicki; Kazmenko & Trofimov (2005) | 2.2572 × 10<sup>31</sup> | [tied_n055.txt](matrices/we_star_2026/tied_n055.txt) | `4-profile mod T (498f9db7 != 897c2c09)` | Cold-constructed 1-bordered 2-circulant Type 1 ([[+1, j^T, -j^T], [j, A, B], [-j, B^T, -A... |
+| **58** | T. Rokicki; Kazmenko & Trofimov (2005) | 6.5774 × 10<sup>33</sup> | [tied_n058.txt](matrices/we_star_2026/tied_n058.txt) | `4-profile mod T (286ef9da != bc7ddaea)` | Cold-constructed unbordered 2-circulant [[A, B], [-B^T, A^T]] of block size m=29 via scal... |
+| **65** | W. P. Orrick & B. Solomon (2003) | 148 · 16<sup>31</sup> | [tied_n065.txt](matrices/we_star_2026/tied_n065.txt) | `2-point Gram (a86dd032 != 66ed6048)` | Switched/algebraic DisjointClosedFour_Hcat_s0 Hadamard core H_64 + [OS-1] border on tripl... |
+| **67** | T. Rokicki (2005) | 1.1400 × 10<sup>41</sup> | [tied_n067.txt](matrices/we_star_2026/tied_n067.txt) | `4-profile mod T (8c0b4faf != ad98b8b8)` | Cold-constructed 1-bordered 2-circulant Type 1 ([[+1, j^T, -j^T], [j, A, B], [-j, B^T, -A... |
+| **69** | Orrick, Solomon et al. (2003) | 155 · 17<sup>33</sup> | [tied_n069.txt](matrices/we_star_2026/tied_n069.txt) | `2-point Gram (96a76a74 != 73d9af27)` | Cold-constructed Asymmetric Goethals-Seidel Hadamard core H_68 (4x17 blocks) + [OS-1] bor... |
+| **70** | W. P. Orrick & T. Rokicki (2005) | 1156 · 17<sup>33</sup> | [tied_n070.txt](matrices/we_star_2026/tied_n070.txt) | `4-profile mod T (f4c9643a != 81fe1930)` | Constructed 2-bordered 2-circulant ([[H_2, J, K], [J^T, A, B], [K^T, B^T, -A^T]]) (block ... |
+| **71** | T. Rokicki (2005) | 31,186,944 · 17<sup>30</sup> | [tied_n071.txt](matrices/we_star_2026/tied_n071.txt) | `4-profile mod T (7ba4d457 != 88f85663)` | Constructed 1-bordered 2-circulant Type 3 ([[A, B, -j], [B^T, -A^T, j], [-j^T, -j^T, -1]]... |
+| **73** | B. Solomon & W. P. Orrick (2003) | 174 · 18<sup>35</sup> | [tied_n073.txt](matrices/we_star_2026/tied_n073.txt) | `2-point Gram (7fdaf7b1 != 1786d082)` | Switched/algebraic DisjointClosedFour_Hcat_s0 Hadamard core H_72 + [OS-1] border on tripl... |
+| **75** | T. Rokicki (2005) | 6.1512 × 10<sup>47</sup> | [tied_n075.txt](matrices/we_star_2026/tied_n075.txt) | `4-profile mod T (f0f13f50 != aa8b36e8)` | Cold-constructed 1-bordered 2-circulant Type 1 ([[+1, j^T, -j^T], [j, A, B], [-j, B^T, -A... |
+| **77** | B. Solomon & W. P. Orrick (2003) | 183 · 19<sup>37</sup> | [tied_n077.txt](matrices/we_star_2026/tied_n077.txt) | `2-point Gram (9de1db65 != 51bd9df8)` | Cold-constructed Asymmetric Goethals-Seidel Hadamard core H_76 (4x19 blocks) + [OS-1] bor... |
+| **79** | T. Rokicki (2005) | 1.6796 × 10<sup>51</sup> | [tied_n079.txt](matrices/we_star_2026/tied_n079.txt) | `4-profile mod T (56be81f7 != 163d0aa0)` | Cold-constructed 1-bordered 2-circulant Type 1 ([[+1, j^T, -j^T], [j, A, B], [-j, B^T, -A... |
+| **83** | T. Rokicki (2005) | 5.0710 × 10<sup>54</sup> | [tied_n083.txt](matrices/we_star_2026/tied_n083.txt) | `4-profile mod T (b2f1ed80 != 8ffe7090)` | Constructed 1-bordered 2-circulant Type 3 ([[A, B, -j], [B^T, -A^T, j], [-j^T, -j^T, -1]]... |
+| **87** | T. Rokicki (2005) | 1.6851 × 10<sup>58</sup> | [tied_n087.txt](matrices/we_star_2026/tied_n087.txt) | `4-profile mod T (0dcf6624 != 0c271884)` | Cold-constructed 1-bordered 2-circulant Type 0 ([[-1, j^T, -j^T], [j, A, B], [-j, B^T, -A... |
+| **106** | W. P. Orrick (2005) | 2704 · 26<sup>51</sup> | [tied_n106.txt](matrices/we_star_2026/tied_n106.txt) | `2-point Gram (8fc5de8f != a9a15cca)` | Exact 1-cell neutral plateau unfreezing breaking 2-circulant symmetry of 2-bordered 2-cir... |
+</details>
+
+<details>
+<summary><strong>Independent Algebraic Cold-Reproductions of Existing Open Records (8 witnesses)</strong></summary>
+
+- **n = 78** (confirms T. Rokicki (2005)): [tied_n078.txt](matrices/we_star_2026/tied_n078.txt) — Transposed-chirality 2-circulant (A, B^T) realization of 2-bordered 2-circulant ([[H_2, J, K], [J^T, A...
+- **n = 94** (confirms T. Rokicki (2005)): [tied_n094.txt](matrices/we_star_2026/tied_n094.txt) — Transposed-chirality 2-circulant (A, B^T) realization of 2-bordered 2-circulant ([[H_2, J, K], [J^T, A...
+- **n = 95** (confirms T. Rokicki (2005)): [tied_n095.txt](matrices/we_star_2026/tied_n095.txt) — Transposed-chirality 2-circulant (A, B^T) realization of 1-bordered 2-circulant Type 0 ([[-1, j^T, -j^...
+- **n = 103** (confirms Butbaia, Gukov et al. (Caltech) (2026)): [tied_n103.txt](matrices/we_star_2026/tied_n103.txt) — Transposed-chirality 2-circulant (A, B^T) realization of 1-bordered 2-circulant Type 1 ([[+1, j^T, -j^...
+- **n = 107** (confirms Butbaia, Gukov et al. (Caltech) (2026)): [tied_n107.txt](matrices/we_star_2026/tied_n107.txt) — Transposed-chirality 2-circulant (A, B^T) realization of 1-bordered 2-circulant Type 1 ([[+1, j^T, -j^...
+- **n = 111** (confirms Butbaia, Gukov et al. (Caltech) (2026)): [tied_n111.txt](matrices/we_star_2026/tied_n111.txt) — Transposed-chirality 2-circulant (A, B^T) realization of 1-bordered 2-circulant Type 3 ([[A, B, -j], [...
+- **n = 115** (confirms Butbaia, Gukov et al. (Caltech) (2026)): [tied_n115.txt](matrices/we_star_2026/tied_n115.txt) — Transposed-chirality 2-circulant (A, B^T) realization of 1-bordered 2-circulant Type 1 ([[+1, j^T, -j^...
+- **n = 119** (confirms Butbaia, Gukov et al. (Caltech) (2026)): [tied_n119.txt](matrices/we_star_2026/tied_n119.txt) — Transposed-chirality 2-circulant (A, B^T) realization of 1-bordered 2-circulant Type 3 ([[A, B, -j], [...
+</details>
 
 ---
 
-## 2. Best Known Lower Bounds on All 50 Open Orders (23 <= n <= 119)
+## 2. Residue-Class Summary (1 <= n <= 120)
 
-To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the 50 open orders ($R(n) < 1$, no published optimality proof) are split into their three residue classes below (`49` rows verified directly from `{-1, +1}` matrices by [`verify.py`](verify.py); exact unrounded integers in [`hadamard_maxdet_n1_to_120.csv`](catalog/hadamard_maxdet_n1_to_120.csv)). Witnesses marked **`*`** have a verified **block-circulant core** ($O(n)$ seed storage, single stepped slit-mask, $O(n \log n)$ FFT application):
+| Residue Class | Orders | Optimal | Open | Improved (`we*` 2026) | Upper Bound $B_{\text{class}}(n)$ | Status Summary |
+| :--- | ---: | ---: | ---: | ---: | :--- | :--- |
+| **0 mod 4**\* | 30 | 30 | 0 | **0** | Hadamard: $n^{n/2}$ | All 30 multiples of 4 achieve $R = 1$ (`*` dyadic Walsh $2^m$: 4, 8, 16, 32, 64) |
+| **1 mod 4** | 30 | 11 | 19 | **8** | Barba: $\sqrt{2n-1}\,(n-1)^{(n-1)/2}$ | 11 optimal (1, 5, 9, 13, 17, 21, 25, 37, 41, 61, 113); 19 open |
+| **2 mod 4** | 30 | 24 | 6 | **0** | Ehlich–Wojtas: $2(n-1)(n-2)^{(n-2)/2}$ | 24 optimal (2*, 22 [Chasiotis et al. 2018], 22 EW-tight); 6 open |
+| **3 mod 4** | 30 | 5 | 25 | **0** | Ehlich $s$-block Gram ($s \in \{3,5,6,7\}$) | 5 optimal (3, 7, 11, 15, 19); 25 open |
 
-### 2.1 Orders n ≡ 1 (mod 4) — Barba Regime (19 Open Orders)
+---
+
+## 3. Best Known Lower Bounds on All 50 Open Orders (23 <= n <= 119)
+
+Grouped by residue class $n \bmod 4$ so that $R(n) = |\det X| / B_{\text{class}}(n)$ is compared against a single upper-bound formula within each table (all 50 rows verified from linked `{-1, +1}` matrices by [`verify.py`](verify.py); witnesses marked **`*`** have a verified block-circulant core):
+
+### 3.1 Orders n ≡ 1 (mod 4) — Barba Regime (19 Open Orders)
 
 *Upper bound: $B_1(n) = \sqrt{2n - 1}\, (n - 1)^{(n - 1)/2}$. Factored entries take the form $c \cdot k^e$ with $k = (n - 1)/4$.*
 
@@ -75,19 +168,17 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | **69** | 6.2394 × 10<sup>42</sup> | 155 · 17<sup>33</sup> | 0.7790 | Orrick, Solomon et al. | 2003 | [n069.txt](matrices/literature_witnesses/n069.txt) |
 | **73** | 1.4965 × 10<sup>46</sup> | 174 · 18<sup>35</sup> | 0.8028 | B. Solomon & W. P. Orrick | 2003 | [n073.txt](matrices/literature_witnesses/n073.txt) |
 | **77** | 3.7699 × 10<sup>49</sup> | 183 · 19<sup>37</sup> | 0.7787 | B. Solomon & W. P. Orrick | 2003 | [n077.txt](matrices/literature_witnesses/n077.txt) |
-| **81** | 1.0775 × 10<sup>53</sup> | 196 · 20<sup>39</sup> | 0.7723 | N. Farmakis & S. Kounias | 1987 | [n081.txt](matrices/literature_witnesses/n081.txt) |
+| **81** | **1.0995 × 10<sup>53</sup>** | **200 · 20<sup>39</sup>** | **0.7881** | **we\* (@mizopl)** (+2.04%) | **2026** | [n081.txt](matrices/we_star_2026/n081.txt) |
 | **85** | 3.4902 × 10<sup>56</sup> | 4509 · 21<sup>40</sup> | 0.7865 | B. Solomon & W. P. Orrick | 2003 | [n085.txt](matrices/literature_witnesses/n085.txt) |
-| **89** | 1.1657 × 10<sup>60</sup> | 220 · 22<sup>43</sup> | 0.7516 | N. Farmakis & S. Kounias | 1987 | none† |
-| **93** | 4.5305 × 10<sup>63</sup> | 239 · 23<sup>45</sup> | 0.7640 | W. P. Orrick & B. Solomon | 2003 | [n093.txt](matrices/literature_witnesses/n093.txt) |
-| **97** | 1.8974 × 10<sup>67</sup> | 256 · 24<sup>47</sup> | 0.7678 | B. Solomon & W. P. Orrick | 2003 | [n097.txt](matrices/literature_witnesses/n097.txt) |
-| **101** | 8.9741 × 10<sup>70</sup> | 7110 · 25<sup>48</sup> | 0.8024 | W. P. Orrick & B. Solomon | 2003 | [n101.txt](matrices/literature_witnesses/n101.txt) |
-| **105** | 3.8474 × 10<sup>74</sup> | — | 0.7022 | T. Rokicki | 2005 | [n105.txt](matrices/literature_witnesses/n105.txt)* |
-| **109** | 1.8775 × 10<sup>78</sup> | — | 0.6482 | T. Rokicki | 2005 | [n109.txt](matrices/literature_witnesses/n109.txt)* |
-| **117** | 7.2315 × 10<sup>85</sup> | — | 0.7186 | T. Rokicki | 2005 | [n117.txt](matrices/literature_witnesses/n117.txt)* |
+| **89** | **1.1975 × 10<sup>60</sup>** | **226 · 22<sup>43</sup>** | **0.7721** | **we\* (@mizopl)** (+2.73%) | **2026** | [n089.txt](matrices/we_star_2026/n089.txt) |
+| **93** | **4.6064 × 10<sup>63</sup>** | **243 · 23<sup>45</sup>** | **0.7768** | **we\* (@mizopl)** (+1.67%) | **2026** | [n093.txt](matrices/we_star_2026/n093.txt) |
+| **97** | **1.9567 × 10<sup>67</sup>** | **264 · 24<sup>47</sup>** | **0.7918** | **we\* (@mizopl)** (+3.12%) | **2026** | [n097.txt](matrices/we_star_2026/n097.txt) |
+| **101** | **9.6254 × 10<sup>70</sup>** | **7626 · 25<sup>48</sup>** | **0.8606** | **we\* (@mizopl)** (+7.26%) | **2026** | [n101.txt](matrices/we_star_2026/n101.txt) |
+| **105** | **4.1559 × 10<sup>74</sup>** | **7413 · 26<sup>50</sup>** | **0.7585** | **we\* (@mizopl)** (+8.02%) | **2026** | [n105.txt](matrices/we_star_2026/n105.txt) |
+| **109** | **2.2503 × 10<sup>78</sup>** | **309 · 27<sup>53</sup>** | **0.7769** | **we\* (@mizopl)** (+19.86%) | **2026** | [n109.txt](matrices/we_star_2026/n109.txt) |
+| **117** | **7.6161 × 10<sup>85</sup>** | **335 · 29<sup>57</sup>** | **0.7568** | **we\* (@mizopl)** (+5.32%) | **2026** | [n117.txt](matrices/we_star_2026/n117.txt) |
 
-<sub>† On <b>n = 89</b>, the lower bound 220 · 22<sup>43</sup> was derived by Farmakis & Kounias (1987) from an order-88 max-excess Hadamard matrix; no explicit 89 × 89 matrix was archived in <code>MaxDet</code>.</sub>
-
-### 2.2 Orders n ≡ 2 (mod 4) — Ehlich–Wojtas Regime (6 Open Orders)
+### 3.2 Orders n ≡ 2 (mod 4) — Ehlich–Wojtas Regime (6 Open Orders)
 
 *Upper bound: $B_2(n) = 2(n - 1)(n - 2)^{(n - 2)/2}$. All other 24 orders $n \equiv 2 \pmod 4$ up to $118$ are proven optimal.*
 
@@ -100,9 +191,9 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | **94** | 3.9312 × 10<sup>64</sup> | — | 0.9695 | T. Rokicki | 2005 | [n094.txt](matrices/literature_witnesses/n094.txt)* |
 | **106** | 3.9414 × 10<sup>75</sup> | 2704 · 26<sup>51</sup> | 0.9905 | W. P. Orrick | 2005 | [n106.txt](matrices/literature_witnesses/n106.txt)* |
 
-### 2.3 Orders n ≡ 3 (mod 4) — Ehlich Block-Gram Regime (25 Open Orders)
+### 3.3 Orders n ≡ 3 (mod 4) — Ehlich Block-Gram Regime (25 Open Orders)
 
-*Upper bound: Ehlich $s$-block Gram bound ($s = 6$ for $23 \le n \le 59$, $s = 7$ for $63 \le n \le 119$). Bold 2026 entries indicate relative $D_{\text{norm}}$ gains over the 2005 Rokicki circulant baseline.*
+*Upper bound: Ehlich $s$-block Gram bound ($s = 6$ for $23 \le n \le 59$, $s = 7$ for $63 \le n \le 119$).*
 
 | n | D<sub>norm</sub> | Factored Form | R = \|det\|/B | Record Holder | Year | Witness |
 | ---: | ---: | :--- | ---: | :--- | :---: | :---: |
@@ -221,7 +312,7 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 78 | 2 | OPEN | 2.9042 × 10<sup>50</sup> | — | 0.9636 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n078.txt)* |
 | 79 | 3 | OPEN | 1.6796 × 10<sup>51</sup> | — | 0.8591 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n079.txt) |
 | 80 | 0 | OPT | 2.1990 × 10<sup>52</sup> | 40 · 20<sup>39</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
-| 81 | 1 | OPEN | 1.0775 × 10<sup>53</sup> | 196 · 20<sup>39</sup> | 0.7723 | N. Farmakis & S. Kounias | 1987 | FK1987 | [txt](matrices/literature_witnesses/n081.txt) |
+| 81 | 1 | OPEN | 1.0995 × 10<sup>53</sup> | 200 · 20<sup>39</sup> | 0.7881 | **we\* (@mizopl)** | 2026 | WE2026 | [txt](matrices/we_star_2026/n081.txt) |
 | 82 | 2 | OPT | 8.9060 × 10<sup>53</sup> | 1620 · 20<sup>39</sup> | 1.0000 | Cohn; Koukouvinos, Kounias & Seberry | 1989 | Coh1989 | — |
 | 83 | 3 | OPEN | 5.0710 × 10<sup>54</sup> | — | 0.8561 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n083.txt)* |
 | 84 | 0 | OPT | 6.8272 × 10<sup>55</sup> | 42 · 21<sup>41</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
@@ -229,27 +320,27 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 86 | 2 | OPT | 2.9015 × 10<sup>57</sup> | 1785 · 21<sup>41</sup> | 1.0000 | Chadjipantelis & Kounias (EW bound) | 1985 | CK1985 | — |
 | 87 | 3 | OPEN | 1.6851 × 10<sup>58</sup> | — | 0.8527 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n087.txt)* |
 | 88 | 0 | OPT | 2.3315 × 10<sup>59</sup> | 44 · 22<sup>43</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
-| 89 | 1 | OPEN | 1.1657 × 10<sup>60</sup> | 220 · 22<sup>43</sup> | 0.7516 | N. Farmakis & S. Kounias | 1987 | FK1987 | — |
+| 89 | 1 | OPEN | 1.1975 × 10<sup>60</sup> | 226 · 22<sup>43</sup> | 0.7721 | **we\* (@mizopl)** | 2026 | WE2026 | [txt](matrices/we_star_2026/n089.txt) |
 | 90 | 2 | OPT | 1.0375 × 10<sup>61</sup> | 1958 · 22<sup>43</sup> | 1.0000 | Cohn; Koukouvinos, Kounias & Seberry | 1989 | Coh1989 | — |
 | 91 | 3 | OPEN | 6.1448 × 10<sup>61</sup> | — | 0.8501 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n091.txt) |
 | 92 | 0 | OPT | 8.7199 × 10<sup>62</sup> | 46 · 23<sup>45</sup> | 1.0000 | Baumert, Golomb & Hall | 1962 | BGH1962 | — |
-| 93 | 1 | OPEN | 4.5305 × 10<sup>63</sup> | 239 · 23<sup>45</sup> | 0.7640 | W. P. Orrick & B. Solomon | 2003 | OS2007 | [txt](matrices/literature_witnesses/n093.txt) |
+| 93 | 1 | OPEN | 4.6064 × 10<sup>63</sup> | 243 · 23<sup>45</sup> | 0.7768 | **we\* (@mizopl)** | 2026 | WE2026 | [txt](matrices/we_star_2026/n093.txt) |
 | 94 | 2 | OPEN | 3.9312 × 10<sup>64</sup> | — | 0.9695 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n094.txt)* |
 | 95 | 3 | OPEN | 2.4387 × 10<sup>65</sup> | — | 0.8447 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n095.txt)* |
 | 96 | 0 | OPT | 3.5577 × 10<sup>66</sup> | 48 · 24<sup>47</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
-| 97 | 1 | OPEN | 1.8974 × 10<sup>67</sup> | 256 · 24<sup>47</sup> | 0.7678 | B. Solomon & W. P. Orrick | 2003 | OS2007 | [txt](matrices/literature_witnesses/n097.txt) |
+| 97 | 1 | OPEN | 1.9567 × 10<sup>67</sup> | 264 · 24<sup>47</sup> | 0.7918 | **we\* (@mizopl)** | 2026 | WE2026 | [txt](matrices/we_star_2026/n097.txt) |
 | 98 | 2 | OPT | 1.7255 × 10<sup>68</sup> | 2328 · 24<sup>47</sup> | 1.0000 | Djokovic (EW bound) | 1997 | Djo1997 | — |
 | 99 | 3 | OPEN | 1.0657 × 10<sup>69</sup> | — | 0.8496 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n099.txt) |
 | 100 | 0 | OPT | 1.5777 × 10<sup>70</sup> | 50 · 25<sup>49</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
-| 101 | 1 | OPEN | 8.9741 × 10<sup>70</sup> | 7110 · 25<sup>48</sup> | 0.8024 | W. P. Orrick & B. Solomon | 2003 | OS2007 | [txt](matrices/literature_witnesses/n101.txt) |
+| 101 | 1 | OPEN | 9.6254 × 10<sup>70</sup> | 7626 · 25<sup>48</sup> | 0.8606 | **we\* (@mizopl)** | 2026 | WE2026 | [txt](matrices/we_star_2026/n101.txt) |
 | 102 | 2 | OPT | 7.9675 × 10<sup>71</sup> | 2525 · 25<sup>49</sup> | 1.0000 | Cohn (EW bound) | 1992 | Coh1992 | — |
 | 103 | 3 | OPEN | 4.9829 × 10<sup>72</sup> | — | 0.8433 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n103.txt)* |
 | 104 | 0 | OPT | 7.5796 × 10<sup>73</sup> | 52 · 26<sup>51</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
-| 105 | 1 | OPEN | 3.8474 × 10<sup>74</sup> | — | 0.7022 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n105.txt)* |
+| 105 | 1 | OPEN | 4.1559 × 10<sup>74</sup> | 7413 · 26<sup>50</sup> | 0.7585 | **we\* (@mizopl)** | 2026 | WE2026 | [txt](matrices/we_star_2026/n105.txt) |
 | 106 | 2 | OPEN | 3.9414 × 10<sup>75</sup> | 2704 · 26<sup>51</sup> | 0.9905 | W. P. Orrick | 2005 | Orr2005 | [txt](matrices/literature_witnesses/n106.txt)* |
 | 107 | 3 | OPEN | 2.5405 × 10<sup>76</sup> | — | 0.8445 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n107.txt)* |
 | 108 | 0 | OPT | 3.9325 × 10<sup>77</sup> | 54 · 27<sup>53</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
-| 109 | 1 | OPEN | 1.8775 × 10<sup>78</sup> | — | 0.6482 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n109.txt)* |
+| 109 | 1 | OPEN | 2.2503 × 10<sup>78</sup> | 309 · 27<sup>53</sup> | 0.7769 | **we\* (@mizopl)** | 2026 | WE2026 | [txt](matrices/we_star_2026/n109.txt) |
 | 110 | 2 | OPT | 2.1432 × 10<sup>79</sup> | 2943 · 27<sup>53</sup> | 1.0000 | Fletcher & Seberry (EW bound) | 2001 | FS2001 | — |
 | 111 | 3 | OPEN | 1.3978 × 10<sup>80</sup> | — | 0.8469 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n111.txt)* |
 | 112 | 0 | OPT | 2.1973 × 10<sup>81</sup> | 56 · 28<sup>55</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
@@ -257,7 +348,7 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 | 114 | 2 | OPT | 1.2414 × 10<sup>83</sup> | 3164 · 28<sup>55</sup> | 1.0000 | Koukouvinos, Kounias & Seberry | 1991 | KKS1991 | — |
 | 115 | 3 | OPEN | 8.2608 × 10<sup>83</sup> | — | 0.8488 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n115.txt)* |
 | 116 | 0 | OPT | 1.3186 × 10<sup>85</sup> | 58 · 29<sup>57</sup> | 1.0000 | Baumert | 1966 | Bau1966 | — |
-| 117 | 1 | OPEN | 7.2315 × 10<sup>85</sup> | — | 0.7186 | T. Rokicki | 2005 | Rok2005 | [txt](matrices/literature_witnesses/n117.txt)* |
+| 117 | 1 | OPEN | 7.6161 × 10<sup>85</sup> | 335 · 29<sup>57</sup> | 0.7568 | **we\* (@mizopl)** | 2026 | WE2026 | [txt](matrices/we_star_2026/n117.txt) |
 | 118 | 2 | OPT | 7.7138 × 10<sup>86</sup> | 3393 · 29<sup>57</sup> | 1.0000 | Fletcher, Koukouvinos & Seberry | 2004 | FKS2004 | — |
 | 119 | 3 | OPEN | 5.2308 × 10<sup>87</sup> | — | 0.8503 | Butbaia, Gukov et al. | 2026 | BG2026 | [txt](matrices/literature_witnesses/n119.txt)* |
 | 120 | 0 | OPT | 8.4782 × 10<sup>88</sup> | 60 · 30<sup>59</sup> | 1.0000 | Paley / Williamson (Hadamard) | 1933 | Pal1933 | — |
@@ -265,7 +356,7 @@ To keep $R(n) = |\det X| / B_{\text{class}}(n)$ comparable down each column, the
 
 ---
 
-## 3. Exact Verification & Testing Your Own Matrices (`verify.py`)
+## 4. Exact Verification & Testing Your Own Matrices (`verify.py`)
 
 ### Why Floating-Point Determinants Cannot Certify Records
 Standard IEEE-754 `float64` routines (`numpy.linalg.det` and `numpy.linalg.slogdet`) carry only 53 bits ($\approx 15.9$ decimal digits) of mantissa precision, whereas $D_{\text{norm}}(n)$ reaches 88 decimal digits by $n = 119$, and distinct constructions can agree to 6+ leading digits (for example at $n = 103$, where the 2026 improvement over Rokicki's 2005 circulant matrix is $+0.00004\%$ in the 7th significant digit). Every entry in this repository is therefore verified in **exact arbitrary-precision integer arithmetic**:
@@ -308,7 +399,7 @@ python3 verify.py --check path/to/candidate_matrix.json --sympy # Dual Bareiss +
 
 ---
 
-## 4. Primary Sources, Related Benchmarks & Attribution
+## 5. Primary Sources, Related Benchmarks & Attribution
 
 ### Archival Databases & Integer Sequences
 - **W. P. Orrick & B. Solomon — `MaxDet` (`indiana.edu/~maxdet`, 2002–2012):** Preserved via the [Indiana University Archive-It mirror](http://wayback.archive-it.org/219/20190316001107/http://www.indiana.edu/~maxdet/), the [Wayback full summary table (`fullPage.shtml`)](https://web.archive.org/web/20131002153624/http://www.indiana.edu/~maxdet/fullPage.shtml), and the [theoretical upper-bounds guide (`bounds.html`)](https://web.archive.org/web/20131002153511/http://www.indiana.edu/~maxdet/bounds.html).
@@ -328,7 +419,9 @@ python3 verify.py --check path/to/candidate_matrix.json --sympy # Dual Bareiss +
 Corrections, missing historical references, verified new matrices (`python3 verify.py --check your_matrix.txt`), or inquiries regarding editorial co-stewardship (see [`CONTRIBUTING.md`](CONTRIBUTING.md)) are welcome via GitHub Issues or Pull Requests.
 
 <details>
-<summary><strong>Full Bibliographic Key ([Syl1867] – [BG2026])</strong></summary>
+<summary><strong>Full Bibliographic Key ([Syl1867] – [WE2026], BibTeX: <code>catalog/references.bib</code>)</strong></summary>
+
+Machine-readable BibTeX entries for all references below are provided in [`catalog/references.bib`](catalog/references.bib):
 
 - **[Syl1867]** J. J. Sylvester (1867), Thoughts on inverse orthogonal matrices, Phil. Mag. 34, 461-475.
 - **[Had1893]** J. Hadamard (1893), Resolution d'une question relative aux determinants, Bull. Sci. Math. 17, 240-246.
@@ -372,8 +465,29 @@ Corrections, missing historical references, verified new matrices (`python3 veri
 - **[CKF2018]** V. Chasiotis, S. Kounias, and N. Farmakis (2018), The D-optimal saturated designs of order 22, Discrete Math. 341, 380-387; Corrigendum ibid. 342 (2019), 2161 (recorded in [OEIS A003432](https://oeis.org/A003432) by R. P. Brent, 2021).
 - **[BEHO2021]** P. Browne, R. Egan, F. Hegarty, and P. O Cathain (2021), A survey of the Hadamard maximal determinant problem, Electron. J. Combin. 28(4), P4.41 ([arXiv:2104.06756](https://arxiv.org/abs/2104.06756)).
 - **[BG2026]** G. Butbaia, J. Tan, P. Vipulanandan, X. Huang, T. Saunders-A'Court, L. Fagan, D. Passaro, M. Tarquini, and S. Gukov (Oct 2026), Reinforcement learning for the Hadamard maximal determinant problem, [arXiv:2608.22518](https://arxiv.org/abs/2608.22518) · [Zenodo 22024187](https://zenodo.org/records/22024187) · [Math-AI-Caltech/hadamard-maxdet](https://github.com/Math-AI-Caltech/hadamard-maxdet).
+- **[WE2026]** we* (@mizopl, Nov 2026), New constructive Hadamard maximal determinant records via asymmetric Goethals-Seidel cores, Closed-Four Hadamard switching, and Orrick-Solomon/Schur-4 seam ascent.
+
+#### Related Recent Literature Beyond Fixed `1 <= n <= 120` Real Sign Matrices (2022–2026)
+- **[MSX2022]** K. Momihara, S. Suda, and Q. Xiang (2022), *Square $(1,-1)$-matrices with large determinants and near-Hadamard matrices*, Linear Algebra Appl. 654, 28–55 (asymptotic near-Hadamard families for $n \equiv 2 \pmod 4$ via two-block almost supplementary difference sets).
+- **[LMX2026]** S.-X. Li, K. Momihara, and Q. Xiang (Aug 2026), *New constructions of square $(\pm 1)$-matrices with large determinants*, Linear Algebra Appl. 752, 66–106.
+- **[GS2026]** S. D. Georgiou and S. Stylianou (Oct 2026), *An exact compression-and-lifting procedure and $D$-optimal designs of orders 198 and 170*, [arXiv:2610.33418](https://arxiv.org/abs/2610.33418) (resolves $n = 170, 198$ above this catalog's $n \le 120$ window).
+- **[TE2025]** Y. Wang et al. (Nov 2025), *ThetaEvolve: Test-time learning on open problems*, [arXiv:2511.23473](https://arxiv.org/abs/2511.23473) (evaluates test-time RL on open order $n = 29$).
+- **Scope note on complex generalizations:** Recent papers on roots-of-unity determinants (e.g., G. Nuñez Ponasso, [arXiv:2503.11114](https://arxiv.org/abs/2503.11114), 2025; X. Dong, [arXiv:2610.40679](https://arxiv.org/abs/2610.40679), 2026) study entries in $\mu_m \subset \mathbb{C}$ ($m \ge 3$) rather than real $\{-1, +1\}$ sign matrices.
 </details>
+
+### Citation
+
+```bibtex
+@misc{westar2026hadamard,
+  author       = {we* and @mizopl},
+  title        = {Hadamard Maximal Determinant Catalog (1 <= n <= 120) and New Constructive Records},
+  year         = {2026},
+  month        = nov,
+  howpublished = {\url{https://github.com/mizopl/hadamard-maxdet}},
+  note         = {Engineered and verified by we* (PROOFER v20 powered by Gemini + @mizopl)}
+}
+```
 
 ---
 
-<sub>Curated and verified by **we\*** (`@mizopl`) · Released under the [MIT License](LICENSE).</sub>
+<sub>Engineered and verified by **we\*** (`PROOFER v20` powered by Gemini + `@mizopl`) · Released under the [MIT License](LICENSE).</sub>
